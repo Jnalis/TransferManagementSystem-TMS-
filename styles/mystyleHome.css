@@ -1,0 +1,150 @@
+/* .bg-white {
+  background-color: #000 !important;
+} */
+
+/* this is for card */
+.cardIndex{
+  border-radius: 10px;
+  text-align: center;
+}
+.text-xs {
+  color: #4CAF50;
+  font-size: 20px;
+}
+.cardText {
+  color: #4CAF50;
+  font-size: 20px;
+}
+.cardTextDetailed {
+  color: #000;
+  font-size: 20px;
+}
+.cardText:hover{
+  background-color:#d1d1d1;
+  color: #000;
+}
+.test-zali:hover{
+  text-decoration: none;
+}
+.titleHead{
+  color: chocolate;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+}
+.titleHeadDetailed{
+  color: chocolate;
+  font-size: 20px;
+  font-weight: 500;
+}
+.card-header {
+  background-color: rgb(206, 206, 206);
+}
+.dateInfo{
+  font-size: smaller;
+  margin-top: 25px;
+}
+.dateInfoDetailed{
+  text-align: right;
+  font-size: smaller;
+  margin-top: 25px;
+  margin-bottom: -15px;
+}
+.myPostDetailed {
+  text-align: left;
+  font-size: smaller;
+  margin-top: 25px;
+  margin-bottom: -15px;
+}
+a:hover{
+  text-decoration: none;
+}
+
+.count{
+  font-size: 2.25rem;
+}
+
+
+
+
+/* for side bar */
+.active{
+  background-color: rgba(77, 255, 77,0.5);
+  color: #fff;
+}
+.sidebar-dark .sidebar-heading {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+}
+.sidebar-item {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  clear: both;
+  font-weight: 400;
+  color: #fff;
+  text-align: left;
+}
+.sidebar-item:hover{
+  background-color: beige;
+  text-decoration: none;
+  color: #000;
+}
+.footer{
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+}
+.foot{
+  background-color: #2f56c8;
+}
+
+/* for information post form
+Style inputs, select elements and textareas */
+input[type=text],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+.btnSubmit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%;
+  margin: 50px auto;
+}
+/* Ends */
+
+@media screen and (max-width: 768px) {
+  .sidebar-dark .sidebar-heading {
+    font-size: 10px;
+  }
+  .sidebar-item {
+    padding: 5px;
+  }
+}
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    
+    input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  
