@@ -83,7 +83,10 @@
                   <h6 class="titleHeadDetailed"><?php echo $row['title']?></h6>
                 </div>
                 <div class="card-body cardTextDetailed">
-                  <?php echo $row['description']?>
+                  <?php 
+                    echo $row['description'].'<br>';
+                    echo "<img src='../uploads/".$row['file']."' class='img-thumbnail postImg'>";
+                  ?>
 
 
                   <p class="dateInfoDetailed">
