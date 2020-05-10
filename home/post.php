@@ -92,9 +92,11 @@
               <div class="col-sm-10">
                 <input type="file" name="file" id="passport">
               </div>
-
-
+            </div>
+            
+            <div class="form-group row">
               <button type="submit" name="save" class="btn btn-primary btnSubmit">Save</button>
+            </div>
 
 
           </form>

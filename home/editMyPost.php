@@ -89,10 +89,21 @@
               </div>
             </div>
 
-
-            <div class="row">
-              <input type="submit" name="edit" value="Edit">
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="passport">Passport</label>
+              <div class="col-sm-10">
+              <?php 
+                    echo "<img src='../uploads/".$row['file']."' class='img-thumbnail postImg'>";
+                  ?>
+                  <br>
+                <input type="file" name="file" id="passport">
+              </div>
             </div>
+
+            <div class="form-group row">
+              <button type="submit" name="edit" class="btn btn-primary btnSubmit">Edit</button>
+            </div>
+
 
           </form>
 

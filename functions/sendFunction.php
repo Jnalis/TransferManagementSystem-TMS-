@@ -76,11 +76,6 @@
       } else{
         echo 'You can not upload a file of this type!';
       }
-
-
-      
-
-
     }
   }
 
@@ -88,6 +83,7 @@
     global $con;
 
     if(isset($_POST['edit'])){
+      
       $title = $_POST['title'];
       $description = $_POST['description'];
       $post_id = $_GET['id'];

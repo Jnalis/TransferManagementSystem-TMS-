@@ -15,7 +15,7 @@
   $middleName = ucfirst(substr($row['middleName'],0,1));
   $surName= strtoupper($row['surName']);
 
-  $result = mysqli_query($con,"SELECT * FROM details ORDER BY created_at DESC");
+  $result = mysqli_query($con,"SELECT * FROM details ORDER BY detail_id DESC");
 
   $count = mysqli_num_rows($result);
 
@@ -109,11 +109,20 @@
                 <div class="card cardText shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="titleHead">
-                      <?php echo $row['title']; ?>
+                      <?php echo strtoupper($row['title']); ?>
                     </h6>
                   </div>
                   <div class="card-body cardText">
-                    <?php echo($row['description']); ?>
+                    <?php 
+                      $text = $row['description'];
+                      $limit = 10;
+                      if (str_word_count($text, 0) > $limit) {
+                        $words = str_word_count($text, 2);
+                        $pos = array_keys($words);
+                        $text = substr($text, 0, $pos[$limit]) . '............';
+                      }
+                      echo $text;
+                    ?>
 
                     <p class="dateInfo">
                       <small>
