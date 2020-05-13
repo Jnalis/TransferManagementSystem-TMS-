@@ -1,28 +1,12 @@
 <?php
-  include_once('../assets/config.php');
-  session_start();
-  if (!isset($_SESSION['member_id'])){
-  header('location:../index.php');
-  }
-  
-  $member_id=$_SESSION['member_id'];
+  require_once('../assets/config.php');
+  require_once('../functions/sendFunction.php');
+  include_once('../includes/session.php');
 
-  $result= mysqli_query($con,"SELECT * FROM teachers WHERE member_id = '$member_id'")or die('Error');
+  $transfer_id = $_GET['id'];
+  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE TRANSFER_ID = $transfer_id");
+  $row = mysqli_fetch_assoc($result);
 
-  $row=mysqli_fetch_array($result);
-
-  $firstName= ucfirst($row['firstName']);
-  $middleName = ucfirst(substr($row['middleName'],0,1));
-  $surName= strtoupper($row['surName']);
-
-  //Getting the single id of post from post
-  $post_id = $_GET['id'];
-
-  $result = mysqli_query($con,"SELECT * FROM details WHERE detail_id = $post_id");
-
-  $row=mysqli_fetch_assoc($result);
-  
-  //echo $row['description'];
 
 ?>
 <!DOCTYPE html>
@@ -68,39 +52,51 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Posts Available</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit a post</h1>
 
           </div>
 
           <!-- Content Row -->
-          <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
+          <form method="POST" action="" class="form-horizontal">
+            <?php editPost(); ?>
 
-              <!-- Basic Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="titleHeadDetailed"><?php echo $row['title']?></h6>
-                </div>
-                <div class="card-body cardTextDetailed">
-                  <?php 
-                    echo $row['description'].'<br>';
-                    echo "<img src='../uploads/".$row['file']."' class='img-thumbnail postImg'>";
-                  ?>
-
-
-                  <p class="dateInfoDetailed">
-                    <small>
-                      Created at <?php echo $row['created_at'];?>
-                      And Updated at <?php echo $row['updated_at'];?>
-                    </small>
-                  </p>
-                </div>
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="title">Title of Transfer</label>
+              <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row['TRANSFER_TITLE']; ?>" required>
               </div>
-
             </div>
-            <div class="col-lg-3"></div>
-          </div>    
+            
+            <!-- <div class="form-group row">
+              <label class="control-label col-sm-2" for="description">Description</label>
+              <div class="col-sm-10">
+                <textarea id="subject" name="description" rows="10" placeholder="Write something.." required>
+                  <?php echo $row['description'] ?>
+                </textarea>
+              </div>
+            </div> -->
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="document">Document</label>
+              <div class="col-sm-10">
+              <?php 
+                   // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>";
+                  ?>
+                  <br>
+                <input type="file" name="file" id="document">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <button type="submit" name="edit" class="btn btn-primary btnSubmit">Edit</button>
+            </div>
+
+
+          </form>
+
+
+
+
         </div>
         <!-- /.container-fluid -->
 
@@ -134,6 +130,12 @@
   <!-- Custom scripts for all pages-->
   <script src="../styles/js/sb-admin-2.min.js"></script>
 
+  <!-- Page level plugins -->
+  <script src="../styles/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../styles/js/demo/chart-area-demo.js"></script>
+  <script src="../styles/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

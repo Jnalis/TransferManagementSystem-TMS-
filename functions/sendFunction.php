@@ -33,27 +33,30 @@
 
       $target = "../uploads/".basename($_FILES['file']['name']);
 
-      $title = ucfirst($_POST['title']);
-      $member_id = $_SESSION['member_id'];
-      $description = ucfirst($_POST['description']);
+      $TRANSFER_TITLE = ucfirst($_POST['TRANSFER_TITLE']);
+      $USER_ID = $_SESSION['USER_ID'];
+      $PLACE_TO_GO = ucfirst($_POST['PLACE_TO_GO']);
+
       $file = $_FILES['file']['name'];
       $fileName = $_FILES['file']['name'];
       $fileTmpName = $_FILES['file']['tmp_name'];
-      $fileSize = $_FILES['file']['size'];
+      $fileSizeInMB = ($_FILES['file']['size']) / (1024*1024);
       $fileError = $_FILES['file']['error'];
 
       $fileExt = explode('.',$fileName);
       $fileActualExt = strtolower(end($fileExt));
 
-      $allowed = array('jpg','jpeg','png');
+      $allowed = array('jpg','jpeg','png','pdf');
 
       if (in_array($fileActualExt, $allowed)) {
-        if ($fileError === 0) {
-          if ($fileSize = 1000) {
+        if ($fileError === 0) { 
+          // echo $fileSize;
+          // die();
+          if ($fileSizeInMB < 4) {
             $fileNameNew = uniqid('', true).".".$fileActualExt;
             $fileDestination = '../uploads/'.basename($fileNameNew);
 
-            $query = mysqli_query($con,"INSERT INTO details (title,member_id,description,file) VALUES ('$title','$member_id','$description','$fileNameNew')");
+            $query = mysqli_query($con,"INSERT INTO user_transfers (USER_ID,TRANSFER_TITLE,file,PLACE_TO_GO) VALUES ('$USER_ID','$TRANSFER_TITLE','$fileNameNew','$PLACE_TO_GO')");
 
 
             if($query && move_uploaded_file($fileTmpName, $fileDestination)){

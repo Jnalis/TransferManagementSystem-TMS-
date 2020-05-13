@@ -1,22 +1,7 @@
 <?php
   require_once('../assets/config.php');
   require_once('../functions/sendFunction.php');
-  session_start();
-  if (!isset($_SESSION['member_id'])) {
-      header('location:../index.php');
-  }
-  
-  $member_id=$_SESSION['member_id'];
-
-  $result= mysqli_query($con, "SELECT * FROM teachers WHERE member_id = '$member_id'")or die('Error');
-
-  $row=mysqli_fetch_array($result);
-
-  $firstName= ucfirst($row['firstName']);
-  $middleName = ucfirst(substr($row['middleName'], 0, 1));
-  $surName= strtoupper($row['surName']);
-
-
+  include_once('../includes/session.php'); 
 
 ?>
 <!DOCTYPE html>
@@ -75,22 +60,29 @@
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Title of Transfer</label>
               <div class="col-sm-10">
-                <input type="text" name="title" class="form-control" id="title" placeholder="Enter Title" required>
+                <input type="text" name="TRANSFER_TITLE" class="form-control" id="title" placeholder="Enter Title" required>
               </div>
             </div>
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
               <label class="control-label col-sm-2" for="description">Reason for transfer</label>
               <div class="col-sm-10">
                 <textarea id="subject" name="description" rows="5" placeholder="Write something about your transfer"
-                  required></textarea>
+                  ></textarea>
+              </div>
+            </div> -->
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="document">Document</label>
+              <div class="col-sm-10">
+                <input type="file" name="file" id="document">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="control-label col-sm-2" for="passport">Passport</label>
+              <label class="control-label col-sm-2" for="title">Place you want to go</label>
               <div class="col-sm-10">
-                <input type="file" name="file" id="passport">
+                <input type="text" name="PLACE_TO_GO" class="form-control" id="title" placeholder="Enter place to go.." required>
               </div>
             </div>
             

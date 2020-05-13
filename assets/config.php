@@ -5,7 +5,7 @@
 if (!$con) {
 	die('ERROR: Could not connec to the server.');
 } else {
-	$select_db = mysqli_select_db($con,'TTMS');
+	$select_db = mysqli_select_db($con,'TMS');
 
 	if(!$select_db){
 		die('ERROR: Could not select DB.');

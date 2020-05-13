@@ -1,26 +1,15 @@
 <?php
-  include_once('../assets/config.php');
-  include_once('../functions/sendFunction.php');
-  session_start();
-  if (!isset($_SESSION['member_id'])){
-  header('location:../index.php');
-  }
+  require_once('../assets/config.php');
+  include_once('../includes/session.php');
+
+  //Getting the single id of post from post
+  $transfer_id = $_GET['id'];
+
+  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
+
+  $row=mysqli_fetch_assoc($result);
   
-  $member_id=$_SESSION['member_id'];
-
-  $result= mysqli_query($con,"SELECT * FROM teachers WHERE member_id = '$member_id'")or die('Error');
-
-  $row=mysqli_fetch_array($result);
-
-  $firstName= ucfirst($row['firstName']);
-  $middleName = ucfirst(substr($row['middleName'],0,1));
-  $surName= strtoupper($row['surName']);
-
-
-  $result = mysqli_query($con,"SELECT * FROM details WHERE member_id = $member_id ORDER BY created_at DESC");
-
-  $count = mysqli_num_rows($result);
-
+  //echo $row['description'];
 
 ?>
 <!DOCTYPE html>
@@ -66,64 +55,33 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">You Post</h1>
+            <h1 class="h3 mb-0 text-gray-800">Posts Available</h1>
 
           </div>
 
           <!-- Content Row -->
           <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
 
               <!-- Basic Card Example -->
-              <?php 
-                if(!$count > 0){
-                  echo '
-                  <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          <h6 class="titleHeadDetailed">You have no post</h6>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-2"></div>
-                  </div>
-                  ';
-                }
-                else {
-                  while($row=mysqli_fetch_assoc($result)){
-              ?>
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="titleHeadDetailed"><?php echo $row['title']?></h6>
+                  <h6 class="titleHeadDetailed"><?php echo $row['TRANSFER_TITLE']?></h6>
                 </div>
                 <div class="card-body cardTextDetailed">
-                  <?php echo $row['description']?>
-
-
-                  <p class="myPostDetailed">
+                  <?php 
+                   // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>";
+                  ?>
+                  <p class="dateInfoDetailed">
                     <small>
-                      Created at <?php echo $row['created_at'];?>
-                      And Updated at <?php echo $row['updated_at'];?>
+                      Created at <?php echo $row['CREATED_AT'];?>
                     </small>
-                    <span class="buttons">
-                      <?php deletePost(); ?>
-                      <a href="viewMyPost.php?id=<?php echo $row['detail_id'];?>">
-                        <button class="btn btn-danger">Delete</button>
-                      </a>
-                      <a href="editMyPost.php?id=<?php echo $row['detail_id'];?>">
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                    </span>
                   </p>
                 </div>
               </div>
-                  <?php } }?>
-
             </div>
-            <div class="col-lg-2"></div>
+            <div class="col-lg-3"></div>
           </div>    
         </div>
         <!-- /.container-fluid -->
