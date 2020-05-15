@@ -1,43 +1,44 @@
 <?php
   include_once('assets/config.php');
 
-
   function login(){
+    session_start();
     global $con;
 
-    if (isset($_POST['login']) && !empty($_POST['email'] && !empty($_POST['password']))) {
+    if (isset($_POST['login'])) {
 
-      $email=$_POST['email'];
-      $my_password=$_POST['password'];
+      $email = stripslashes(mysqli_real_escape_string($con,$_POST['email']));
+      $password= stripslashes(mysqli_real_escape_string($con,$_POST['password']));
 
       
-      $result = mysqli_query($con,"SELECT USER_ID FROM user_info WHERE email = '$email' AND password = '$my_password'") or die ('Ooops! Something is wrong');
+      $result = mysqli_query($con,"SELECT * FROM user_info WHERE email = '$email' AND password = '$password'") or die ('Ooops! Something is wrong');
 
       $count=mysqli_num_rows($result);
-      $row=mysqli_fetch_array($result);
-      // password_verify($my_password,$row['password'])
-
-     
-      if ($count > 0){
       
-        if ($row['Head of institution']) {
-          session_start();
+     
+      if ($count == 1){
+        $rows = mysqli_fetch_assoc($result);
 
-          $_SESSION['USER_ID']=$row['USER_ID'];
+        if ($rows['ROLE'] === 'Head of institution') {
+
+          $_SESSION['USER_ID']=$rows['USER_ID'];
           header('location:Admin/index.php');
-        } else {
-          session_start();
 
-          $_SESSION['USER_ID']=$row['USER_ID'];
+        } 
+        elseif($rows['ROLE'] === 'workers') {
+
+          $_SESSION['USER_ID']=$rows['USER_ID'];
           header('location:workers/index.php');
-        }
-        
+
+         } else{
+           echo 'No such user in our database';
+         }
         
       }
       else{
         //header('location:index.php');
         echo '<div class="alert alert-danger" role="alert">
-          Wrong user input.
+          Email or Password is incorrect.
         </div>';
       }
     }

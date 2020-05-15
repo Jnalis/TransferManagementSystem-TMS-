@@ -1,6 +1,6 @@
 <?php
-  include_once('assets/config.php');
-  include_once('functions/loginFunction.php');
+  require('assets/config.php');
+  require('functions/loginFunction.php');
  
 ?>
 <!DOCTYPE html>
