@@ -72,8 +72,12 @@
                 </div>
                 <div class="card-body cardTextDetailed">
                   <?php 
+<<<<<<< HEAD
                    // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>"; 
                    echo 'place to show files';
+=======
+                   echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>";
+>>>>>>> 4bc793a7b289fa01e2a078798125a6ee173f184a
                   ?>
                   <p class="myPostDetailed">
                     <span class="buttons">

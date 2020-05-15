@@ -101,11 +101,18 @@ $count = mysqli_num_rows($result);
                       <div class="card-body cardText">
                         <p>
                           I have attached the following document
+<<<<<<< HEAD
                           <br>
                           place to show files
                           <p class="doc">
                             <?php
                             // echo "<iframe src=\"../uploads/".$row['FILE']."\" width=\"100%\" style=\"height:100%\"></iframe>";
+=======
+                          <p class="doc">
+                            <?php
+                            echo "<iframe src=\"../uploads/".$row['FILE']."\" width=\"100%\" style=\"height:100%\"></iframe>";
+
+>>>>>>> 4bc793a7b289fa01e2a078798125a6ee173f184a
                             echo $row['FILE']; ?>
                           </p>
                         </p>
