@@ -1,10 +1,10 @@
 <?php
-  require_once('../assets/config.php');
-  include_once('../includes/session.php');
+require_once('../assets/config.php');
+include_once('../includes/session.php');
 
-  $result = mysqli_query($con,"SELECT * FROM user_transfers ORDER BY TRANSFER_ID DESC");
-  
-  $count = mysqli_num_rows($result);
+$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE USER_ID = $USER_ID ORDER BY TRANSFER_ID DESC");
+
+$count = mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include_once('../includes/sidebar.php'); ?>
+    <?php include_once('../includes/workers_includes/sidebar.php'); ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -66,59 +66,63 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs">
-                        <?php echo $count; ?>
-                        <small>Available Posts view them below</small>
+                        <?php
+                        if (!$count > 0) {
+                          echo '<small class="alert alert-danger">YOU DONT HAVE ANY TRANSFER</small>';
+                        } else {
+                          echo $count . '<small>Available Posts view them below</small>';
+                        }
+                        ?>
                       </div>
                     </div>
-                    <!-- <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                      </div> -->
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-xl-4 col-md-6 mb-4"></div>
 
-            <?php 
-                if(!$count > 0){
-                  //do something
-                }
-                else{
-                  while($row = mysqli_fetch_assoc($result)){ ?>
+            <?php
+            if (!$count > 0) {
+              echo '<a href="post.php" class="btn btn-primary">Go to Post</a>';
+            } else {
+              while ($row = mysqli_fetch_assoc($result)) { ?>
 
-            <div class="col-lg-6">
-              <!-- Basic Card Example -->
-              <!-- the anchor tag has a php inside just to pass it to the url and its more dynamic to access data from db -->
-              <a href="viewPost.php?id=<?php echo $row['TRANSFER_ID'];?>" id="moreInfo" class="test-zali">
-                <div class="card cardText shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="titleHead">
-                      <?php echo strtoupper($row['TRANSFER_TITLE']); ?>
-                    </h6>
-                  </div>
-                  <div class="card-body cardText">
-                    <?php 
-                      // $text = $row['description'];
-                      // $limit = 10;
-                      // if (str_word_count($text, 0) > $limit) {
-                      //   $words = str_word_count($text, 2);
-                      //   $pos = array_keys($words);
-                      //   $text = substr($text, 0, $pos[$limit]) . '............';
-                      // }
-                      // echo $text;
-                    ?>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-9">
+                  <!-- Basic Card Example -->
+                  <!-- the anchor tag has a php inside just to pass it to the url and its more dynamic to access data from db -->
+                  <a href="viewTransfer.php?id=<?php echo $row['TRANSFER_ID']; ?>" id="moreInfo" class="test-zali">
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="titleHead">
+                          <?php echo strtoupper($row['TRANSFER_TITLE']); ?>
+                        </h6>
+                      </div>
+                      <div class="card-body cardText">
+                        <p>
+                          I have attached the following document
+                          <br>
+                          place to show files
+                          <p class="doc">
+                            <?php
+                            // echo "<iframe src=\"../uploads/".$row['FILE']."\" width=\"100%\" style=\"height:100%\"></iframe>";
+                            echo $row['FILE']; ?>
+                          </p>
+                        </p>
 
-                    <!-- <p class="dateInfo">
-                      <small>
-                        Created at <?php echo $row['created_at'];?>
-                        And Updated at <?php echo $row['updated_at'];?>
-                      </small>
-                    </p> -->
-                  </div>
+                        <p class="dateInfoDetailed">
+                          <small>
+                            Created at <?php echo $row['CREATED_AT']; ?>
+                          </small>
+                        </p>
+                        </p>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-            <?php } } ?>
+                <div class="col-lg-1"></div>
+            <?php }
+            } ?>
 
 
 
@@ -156,12 +160,6 @@
   <!-- Custom scripts for all pages-->
   <script src="../styles/js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="../styles/vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../styles/js/demo/chart-area-demo.js"></script>
-  <script src="../styles/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

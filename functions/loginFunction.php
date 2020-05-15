@@ -19,10 +19,19 @@
 
      
       if ($count > 0){
-        session_start();
+      
+        if ($row['Head of institution']) {
+          session_start();
 
-        $_SESSION['USER_ID']=$row['USER_ID'];
-        header('location:Admin/index.php');
+          $_SESSION['USER_ID']=$row['USER_ID'];
+          header('location:Admin/index.php');
+        } else {
+          session_start();
+
+          $_SESSION['USER_ID']=$row['USER_ID'];
+          header('location:workers/index.php');
+        }
+        
         
       }
       else{

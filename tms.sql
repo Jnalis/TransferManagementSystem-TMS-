@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2020 at 11:06 AM
+-- Generation Time: May 15, 2020 at 06:58 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.16
 
@@ -47,6 +47,7 @@ CREATE TABLE `user_info` (
   `GENDER` enum('Male','Female') NOT NULL,
   `YOB` year(4) NOT NULL,
   `EMAIL` varchar(255) NOT NULL,
+  `PHONE_NUMBER` varchar(50) NOT NULL,
   `CURRENT_WORK_PLACE` varchar(255) NOT NULL,
   `ROLE` enum('Head of institution','workers') NOT NULL,
   `PASSWORD` varchar(255) NOT NULL
@@ -56,8 +57,9 @@ CREATE TABLE `user_info` (
 -- Dumping data for table `user_info`
 --
 
-INSERT INTO `user_info` (`USER_ID`, `FIRSTNAME`, `MIDDLENAME`, `SURNAME`, `GENDER`, `YOB`, `EMAIL`, `CURRENT_WORK_PLACE`, `ROLE`, `PASSWORD`) VALUES
-(1, 'hod', 'hod', 'hod', 'Male', 1956, 'hod@gmail.com', 'mbezi primary school', 'Head of institution', '123');
+INSERT INTO `user_info` (`USER_ID`, `FIRSTNAME`, `MIDDLENAME`, `SURNAME`, `GENDER`, `YOB`, `EMAIL`, `PHONE_NUMBER`, `CURRENT_WORK_PLACE`, `ROLE`, `PASSWORD`) VALUES
+(1, 'hod', 'hod', 'hod', 'Male', 1956, 'hod@gmail.com', '0757334887', 'mbezi primary school', 'Head of institution', '123'),
+(2, 'worker', 'worker', 'worker', 'Male', 1960, 'worker@gmail.com', '0623512407', 'temboni primary school', 'workers', '123');
 
 -- --------------------------------------------------------
 
@@ -81,7 +83,11 @@ CREATE TABLE `user_transfers` (
 INSERT INTO `user_transfers` (`TRANSFER_ID`, `USER_ID`, `TRANSFER_TITLE`, `FILE`, `PLACE_TO_GO`, `CREATED_AT`) VALUES
 (1, 1, 'Naomba kuhama', '5eba6280435472.85348787.pdf', 'Dsm', '2020-05-12 12:21:45'),
 (2, 1, 'Naomba kuhama', '5eba6cd1719997.62692912.pdf', 'Dsm', '2020-05-12 12:21:45'),
-(3, 1, 'Naomba kuhama', '5eba6d19d28898.80263821.pdf', 'Dsm', '2020-05-12 12:21:45');
+(3, 1, 'Naomba kuhama', '5eba6d19d28898.80263821.pdf', 'Dsm', '2020-05-12 12:21:45'),
+(4, 1, 'Naomba kuhama', '5ebbbed8f18023.57647587.pdf', 'Dsm', '2020-05-13 09:33:12'),
+(5, 1, 'Naomba nihamie katika mkoa wa dsm', '5ebbc1047a6466.81924321.pdf', 'Mbezi primary school dsm', '2020-05-13 09:42:28'),
+(6, 1, 'Kuhamia katika shule yako', 'LAB_30_MAY5ebbc1ca6cc982.06421916.pdf', 'Mbeya', '2020-05-13 09:45:46'),
+(10, 2, 'Naomba kuhama', 'LAB_30_MAY5ebceff57a4787.85566094.pdf', 'Dsm', '2020-05-14 07:15:01');
 
 --
 -- Indexes for dumped tables
@@ -122,13 +128,13 @@ ALTER TABLE `user_contact_info`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_transfers`
 --
 ALTER TABLE `user_transfers`
-  MODIFY `TRANSFER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `TRANSFER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
