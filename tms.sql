@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
+-- test
 -- Table structure for table `user_contact_info`
 --
 
