@@ -5,16 +5,20 @@
     global $con;
 
     if(isset($_POST['submit'])){
-      $firstname =mysqli_real_escape_string($con,$_POST['firstName']);
-      $middlename =mysqli_real_escape_string($con,$_POST['middleName']);
-      $surname =mysqli_real_escape_string($con,$_POST['surName']);
-      $phonenumber =mysqli_real_escape_string($con,$_POST['phoneNumber']);
-      $email =mysqli_real_escape_string($con,$_POST['email']);
-      $password =mysqli_real_escape_string($con,$_POST['password']);
-      $confirmpassword =mysqli_real_escape_string($con,$_POST['confirmPassword']);
 
-      $query = mysqli_query($con,"INSERT INTO teachers (firstName,middleName,surName,phoneNumber,email,password) VALUES ('$firstname','$middlename',
-      '$surname', '$phonenumber', '$email', '$password')");
+      $firstname = $_POST['FIRSTNAME'];
+      $middlename = $_POST['MIDDLENAME'];
+      $surname = $_POST['SURNAME'];
+      $gender = $_POST['GENDER'];
+      $yob = $_POST['YOB'];
+      $phonenumber = $_POST['PHONE_NUMBER'];
+      $email = $_POST['EMAIL'];
+      $current_work_place = $_POST['CURRENT_WORK_PLACE'];
+      $role = 'workers';
+      $password = $_POST['PASSWORD'];
+      $confirmpassword = $_POST['CONFIRM_PASSWORD'];
+
+      $query = mysqli_query($con,"INSERT INTO user_info (FIRSTNAME,MIDDLENAME,SURNAME,GENDER,YOB,PHONE_NUMBER,EMAIL,CURRENT_WORK_PLACE,ROLE,PASSWORD) VALUES ('$firstname','$middlename', '$surname', '$gender', '$yob', '$phonenumber', '$email', '$current_work_place', '$role', '$password')");
 
       if ($query) {
         header("location:../index.php");
@@ -31,8 +35,6 @@
 
     if(isset($_POST['save'])){
 
-      $target = "../uploads/".basename($_FILES['file']['name']);
-
       $TRANSFER_TITLE = ucfirst($_POST['TRANSFER_TITLE']);
       $USER_ID = $_SESSION['USER_ID'];
       $PLACE_TO_GO = ucfirst($_POST['PLACE_TO_GO']);
@@ -44,6 +46,7 @@
       $fileError = $_FILES['file']['error'];
 
       $fileExt = explode('.',$fileName);
+      $fileName2 = $fileExt[0];
       $fileActualExt = strtolower(end($fileExt));
 
       $allowed = array('jpg','jpeg','png','pdf');
@@ -53,8 +56,9 @@
           // echo $fileSize;
           // die();
           if ($fileSizeInMB < 4) {
-            $fileNameNew = uniqid('', true).".".$fileActualExt;
-            $fileDestination = '../uploads/'.basename($fileNameNew);
+
+            $fileNameNew = uniqid($fileName2, true).".".$fileActualExt;
+            $fileDestination = '../uploads/'.basename($fileName2.$fileNameNew);
 
             $query = mysqli_query($con,"INSERT INTO user_transfers (USER_ID,TRANSFER_TITLE,file,PLACE_TO_GO) VALUES ('$USER_ID','$TRANSFER_TITLE','$fileNameNew','$PLACE_TO_GO')");
 
@@ -81,6 +85,7 @@
       }
     }
   }
+  
 
   function editPost(){
     global $con;
@@ -110,14 +115,14 @@
     global $con;
 
     if(isset($_GET['id'])){
-      $post_id = $_GET['id'];
-      $query = mysqli_query($con,"SELECT * FROM details WHERE detail_id = '$post_id'");
+      $transfer_id = $_GET['id'];
+      $query = mysqli_query($con,"SELECT * FROM user_transfers WHERE TRANSFER_ID = '$transfer_id'");
       if($query){
-        $deleteQuery = mysqli_query($con,"DELETE FROM details WHERE detail_id = '$post_id'");
+        $deleteQuery = mysqli_query($con,"DELETE FROM user_transfers WHERE TRANSFER_ID = '$transfer_id'");
         if($deleteQuery){
           // header("location:viewMyPost.php");
           echo("<script>
-            location.href = 'viewMyPost.php';
+            location.href = 'index.php';
           </script>");
         }
         else{

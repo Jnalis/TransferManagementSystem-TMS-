@@ -81,7 +81,7 @@
 
             <?php 
                 if(!$count > 0){
-                  //do something
+                  echo 'There is no post yet';
                 }
                 else{
                   while($row = mysqli_fetch_assoc($result)){ ?>
@@ -90,30 +90,26 @@
               <!-- Basic Card Example -->
               <!-- the anchor tag has a php inside just to pass it to the url and its more dynamic to access data from db -->
               <a href="viewPost.php?id=<?php echo $row['TRANSFER_ID'];?>" id="moreInfo" class="test-zali">
-                <div class="card cardText shadow mb-4">
+                <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="titleHead">
                       <?php echo strtoupper($row['TRANSFER_TITLE']); ?>
                     </h6>
                   </div>
                   <div class="card-body cardText">
-                    <?php 
-                      // $text = $row['description'];
-                      // $limit = 10;
-                      // if (str_word_count($text, 0) > $limit) {
-                      //   $words = str_word_count($text, 2);
-                      //   $pos = array_keys($words);
-                      //   $text = substr($text, 0, $pos[$limit]) . '............';
-                      // }
-                      // echo $text;
-                    ?>
+                    <p>
+                      I have attached the following document
+                      <p class="doc">
+                        <?php echo $row['FILE'];?>
+                      </p>
+                    </p>
 
-                    <!-- <p class="dateInfo">
+                    <p class="dateInfoDetailed">
                       <small>
-                        Created at <?php echo $row['created_at'];?>
-                        And Updated at <?php echo $row['updated_at'];?>
+                        Created at <?php echo $row['CREATED_AT'];?>
                       </small>
-                    </p> -->
+                    </p>
+                  </p>
                   </div>
                 </div>
               </a>
@@ -156,12 +152,6 @@
   <!-- Custom scripts for all pages-->
   <script src="../styles/js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="../styles/vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../styles/js/demo/chart-area-demo.js"></script>
-  <script src="../styles/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

@@ -9,10 +9,12 @@
 
 <head>
   <?php include_once('../includes/metaTags.php') ?>
-  <title>TTMS - Register</title>
+  <title>TMS - Register</title>
   <!-- Custom fonts for this template-->
   <link href="../styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="../styles/css/sb-admin-2.min.css" rel="stylesheet">
   <!-- Coustom styles after editing -->
@@ -27,7 +29,7 @@
         <div class="row">
           <div class="col-lg-5 d-none d-lg-block">
             <p class="message">
-              TEACHER TRANSFER MANAGEMENT SYSTEM
+              TRANSFER MANAGEMENT SYSTEM
             </p>
           </div>
           <div class="col-lg-7">
@@ -38,43 +40,72 @@
               <form class="user" method="POST" action="">
                 <?php register(); ?>
 
+                <!-- FIRST NAME -->
                 <div class="form-group">
-                  <input type="text" name="firstName" class="form-control form-control-user" id="firstName" required placeholder="First Name">
+                  <input type="text" name="FIRSTNAME" class="form-control form-control-user" required 
+                  placeholder="First Name">
                 </div>
-               
+
+                <!-- MIDDLENAME AND SURNAME -->
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" name="middleName" class="form-control form-control-user" id="middleName" required placeholder="Middle Name">
+                    <input type="text" name="MIDDLENAME" class="form-control form-control-user" required placeholder="Middle Name">
                   </div>
 
                   <div class="col-sm-6">
-                    <input type="text" name="surName" class="form-control form-control-user" id="SurName" required placeholder="Surname">
+                    <input type="text" name="SURNAME" class="form-control form-control-user" required placeholder="Surname">
                   </div>
                 </div>
 
-
-
+                <!-- GENDER AND YOB -->
                 <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" name="phoneNumber" class="form-control form-control-user" id="phoneNumber" required placeholder="Phone Number">
+                  <div class="custom-control custom-radio col-sm-6 mb-3 mb-sm-0">
+                    <div class="form-group row">
+                      <div class="col-sm-3 radio_buttons">
+                        <input type="radio" name="GENDER" class="custom-control-input form-control form-control-user"
+                        id="Male" value="Male" required>
+                        <label class="custom-control-label" for="Male">Male</label>
+                      </div>
+                      <div class="col-sm-3 radio_buttons">
+                        <input type="radio" name="GENDER" class="custom-control-input form-control form-control-user"
+                        id="Female" value="Female" required>
+                        <label class="custom-control-label" for="Female">Female</label>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="col-sm-6">
-                    <input type="email" name="email" class="form-control form-control-user" id="email" required placeholder="Email">
+                    <input type="text" name="YOB" class="form-control form-control-user" required
+                      placeholder="Year of Birth">
                   </div>
                 </div>
 
-
-
+                <!-- NUMBER AND EMAIL -->
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" required placeholder="Password">
+                    <input type="text" name="PHONE_NUMBER" class="form-control form-control-user" required placeholder="Phone Number">
+                  </div>
+
+                  <div class="col-sm-6">
+                    <input type="email" name="EMAIL" class="form-control form-control-user" required placeholder="Email">
+                  </div>
+                </div>
+
+                <!-- CURRENT WORKING PLACE -->
+                <div class="form-group">
+                  <input type="text" name="CURRENT_WORK_PLACE" class="form-control form-control-user" required 
+                  placeholder="Current Work Place">
+                </div>
+
+                <!-- PASSWORD AND CONFIRM PASSWORD -->
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" name="PASSWORD" class="form-control form-control-user" required placeholder="Password">
                   </div>
 
 
                   <div class="col-sm-6">
-                    <input type="password" name="confirmPassword" class="form-control form-control-user" id="exampleRepeatPassword"
-                      required placeholder="Repeat Password">
+                    <input type="password" name="CONFIRM_PASSWORD" class="form-control form-control-user" required placeholder="Repeat Password">
                   </div>
                 </div>
 
