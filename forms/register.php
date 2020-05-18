@@ -1,14 +1,14 @@
 <?php
 
-  include_once('../assets/config.php');
-  include_once('../functions/sendFunction.php');
+  require_once('../assets/config.php');
+  require_once('../functions/sendFunction.php');
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <?php include_once('../includes/metaTags.php') ?>
+  <?php require_once('../includes/metaTags.php') ?>
   <title>TMS - Register</title>
   <!-- Custom fonts for this template-->
   <link href="../styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,18 +42,18 @@
 
                 <!-- FIRST NAME -->
                 <div class="form-group">
-                  <input type="text" name="FIRSTNAME" class="form-control form-control-user" required 
+                  <input type="text" name="firstname" class="form-control form-control-user" required 
                   placeholder="First Name">
                 </div>
 
                 <!-- MIDDLENAME AND SURNAME -->
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" name="MIDDLENAME" class="form-control form-control-user" required placeholder="Middle Name">
+                    <input type="text" name="middlename" class="form-control form-control-user" required placeholder="Middle Name">
                   </div>
 
                   <div class="col-sm-6">
-                    <input type="text" name="SURNAME" class="form-control form-control-user" required placeholder="Surname">
+                    <input type="text" name="surname" class="form-control form-control-user" required placeholder="Surname">
                   </div>
                 </div>
 
@@ -62,12 +62,12 @@
                   <div class="custom-control custom-radio col-sm-6 mb-3 mb-sm-0">
                     <div class="form-group row">
                       <div class="col-sm-3 radio_buttons">
-                        <input type="radio" name="GENDER" class="custom-control-input form-control form-control-user"
+                        <input type="radio" name="gender" class="custom-control-input form-control form-control-user"
                         id="Male" value="Male" required>
                         <label class="custom-control-label" for="Male">Male</label>
                       </div>
                       <div class="col-sm-3 radio_buttons">
-                        <input type="radio" name="GENDER" class="custom-control-input form-control form-control-user"
+                        <input type="radio" name="gender" class="custom-control-input form-control form-control-user"
                         id="Female" value="Female" required>
                         <label class="custom-control-label" for="Female">Female</label>
                       </div>
@@ -75,7 +75,7 @@
                   </div>
 
                   <div class="col-sm-6">
-                    <input type="text" name="YOB" class="form-control form-control-user" required
+                    <input type="text" name="yob" class="form-control form-control-user" required
                       placeholder="Year of Birth">
                   </div>
                 </div>
@@ -83,29 +83,30 @@
                 <!-- NUMBER AND EMAIL -->
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" name="PHONE_NUMBER" class="form-control form-control-user" required placeholder="Phone Number">
+                    <input type="text" name="phone" class="form-control form-control-user" required placeholder="Phone Number">
                   </div>
 
                   <div class="col-sm-6">
-                    <input type="email" name="EMAIL" class="form-control form-control-user" required placeholder="Email">
+                    <input type="email" name="email" class="form-control form-control-user" required placeholder="Email">
                   </div>
                 </div>
 
                 <!-- CURRENT WORKING PLACE -->
                 <div class="form-group">
-                  <input type="text" name="CURRENT_WORK_PLACE" class="form-control form-control-user" required 
+                  <small>Please follow this format of district,region eg: ubungo,dar es salaam NOTE:shortform of region or district names is disallowed</small>
+                  <input type="text" name="workPlace" class="form-control form-control-user" required 
                   placeholder="Current Work Place">
                 </div>
 
                 <!-- PASSWORD AND CONFIRM PASSWORD -->
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" name="PASSWORD" class="form-control form-control-user" required placeholder="Password">
+                    <input type="password" name="password" class="form-control form-control-user" required placeholder="Password">
                   </div>
 
 
                   <div class="col-sm-6">
-                    <input type="password" name="CONFIRM_PASSWORD" class="form-control form-control-user" required placeholder="Repeat Password">
+                    <input type="password" name="confirmPassword" class="form-control form-control-user" required placeholder="Repeat Password">
                   </div>
                 </div>
 

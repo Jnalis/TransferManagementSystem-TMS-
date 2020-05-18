@@ -3,6 +3,11 @@
 } */
 
 /* this is for card */
+.small, small {
+  font-size: 80%;
+  font-weight: 400;
+  color: black;
+}
 .cardIndex{
   border-radius: 10px;
   text-align: center;
@@ -71,8 +76,30 @@ a:hover{
   font-size: 2.25rem;
 }
 
-
-
+/* file pdf */
+.pdfP{
+  margin-top: 15px;
+  margin-left: 50px;
+}
+.pdfIcon{
+  color: #4CAF50;
+  font-size: 40px;
+  padding-right: 5%;
+}
+.pdfLink{
+  color: #000;
+}
+.pdfLink:hover{
+  color: #000;
+  text-decoration: underline;
+}
+/* top bar */
+.topbarCursor{
+  cursor: default;
+}
+.sms{
+  color: #000;
+}
 
 /* for side bar */
 .active{
@@ -146,6 +173,7 @@ label {
     padding: 5px;
   }
 }
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     
@@ -154,4 +182,5 @@ label {
       margin-top: 0;
     }
   }
+
   

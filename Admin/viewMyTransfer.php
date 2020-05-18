@@ -1,10 +1,10 @@
 <?php
-  include_once('../assets/config.php');
-  include_once('../functions/sendFunction.php');
-  include_once('../includes/session.php');
+  require_once('../assets/config.php');
+  require_once('../functions/sendFunction.php');
+  require('../includes/sessionToBeRequired.php');
 
 
-  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE USER_ID = $USER_ID ORDER BY created_at DESC");
+  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY created_at DESC");
 
   $count = mysqli_num_rows($result);
 
@@ -15,7 +15,7 @@
 
 <head>
 
-  <?php include_once('../includes/metaTags.php') ?>
+  <?php require_once('../includes/metaTags.php') ?>
 
   <title>TMS Home</title>
 
@@ -36,7 +36,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php include_once('../includes/sidebar.php'); ?>
+    <?php require_once('../includes/sidebar.php'); ?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -45,7 +45,7 @@
       <div id="content">
 
          <!-- Topbar -->
-         <?php include_once('../includes/topbar.php') ?>
+         <?php require_once('../includes/topbar.php') ?>
          <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -85,7 +85,7 @@
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="titleHeadDetailed">
-                    <?php echo $row['TRANSFER_TITLE']?>
+                    <?php echo $row['transfer_title']?>
                   </h6>
                 </div>
                 <div class="card-body cardTextDetailed">
@@ -94,15 +94,15 @@
 
                   <p class="myPostDetailed">
                     <small>
-                      Created at <?php echo $row['CREATED_AT'];?>
+                      Created at <?php echo $row['created_at'];?>
                     </small>
                     <span class="buttons">
                       <?php deletePost(); ?>
-                      <a href="viewMyPost.php?id=<?php echo $row['TRANSFER_ID'];?>">
+                      <a href="viewMyTransfer.php?id=<?php echo $row['transfer_id'];?>">
                         <button class="btn btn-danger">Delete</button>
                       </a>
                       
-                      <a href="editMyPost.php?id=<?php echo $row['TRANSFER_ID'];?>">
+                      <a href="editMyTransfer.php?id=<?php echo $row['transfer_id'];?>">
                         <button class="btn btn-info">Edit</button>
                       </a>
                     </span>
@@ -121,7 +121,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <?php include_once('../includes/footer.php'); ?>
+      <?php require_once('../includes/footer.php'); ?>
       <!-- End of Footer -->
 
     </div>

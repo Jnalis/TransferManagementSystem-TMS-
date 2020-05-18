@@ -5,20 +5,20 @@
     global $con;
 
     if(isset($_POST['submit'])){
-
-      $firstname = $_POST['FIRSTNAME'];
-      $middlename = $_POST['MIDDLENAME'];
-      $surname = $_POST['SURNAME'];
-      $gender = $_POST['GENDER'];
-      $yob = $_POST['YOB'];
-      $phonenumber = $_POST['PHONE_NUMBER'];
-      $email = $_POST['EMAIL'];
-      $current_work_place = $_POST['CURRENT_WORK_PLACE'];
+      
+      $firstname = ucfirst(stripslashes(mysqli_real_escape_string($con,$_POST['firstname'])));
+      $middlename = ucfirst(stripslashes(mysqli_real_escape_string($con,$_POST['middlename'])));
+      $surname = ucfirst(stripslashes(mysqli_real_escape_string($con,$_POST['surname'])));
+      $gender = mysqli_real_escape_string($con,$_POST['gender']);
+      $yob = stripslashes(mysqli_real_escape_string($con,$_POST['yob']));
+      $phonenumber = stripslashes(mysqli_real_escape_string($con,$_POST['phone']));
+      $email = stripslashes(mysqli_real_escape_string($con,$_POST['email']));
+      $workPlace = ucfirst(stripslashes($_POST['workPlace']));
       $role = 'workers';
-      $password = $_POST['PASSWORD'];
-      $confirmpassword = $_POST['CONFIRM_PASSWORD'];
+      $password = stripslashes(mysqli_real_escape_string($con,$_POST['password']));
+      $confirmpassword = stripslashes(mysqli_real_escape_string($con,$_POST['confirmPassword']));
 
-      $query = mysqli_query($con,"INSERT INTO user_info (FIRSTNAME,MIDDLENAME,SURNAME,GENDER,YOB,PHONE_NUMBER,EMAIL,CURRENT_WORK_PLACE,ROLE,PASSWORD) VALUES ('$firstname','$middlename', '$surname', '$gender', '$yob', '$phonenumber', '$email', '$current_work_place', '$role', '$password')");
+      $query = mysqli_query($con,"INSERT INTO user_info (firstname,middlename,surname,gender,yob,phone,email,workPlace,ROLE,password) VALUES ('$firstname','$middlename', '$surname', '$gender', '$yob', '$phonenumber', '$email', '$workPlace', '$role', '$password')");
 
       if ($query) {
         header("location:../index.php");
@@ -35,9 +35,9 @@
 
     if(isset($_POST['save'])){
 
-      $TRANSFER_TITLE = ucfirst($_POST['TRANSFER_TITLE']);
-      $USER_ID = $_SESSION['USER_ID'];
-      $PLACE_TO_GO = ucfirst($_POST['PLACE_TO_GO']);
+      $transfer_title = ucfirst(stripslashes(mysqli_real_escape_string($con,$_POST['transfer_title'])));
+      $user_id = $_SESSION['user_id'];
+      $place_to_go = ucfirst(mysqli_real_escape_string($con,$_POST['place_to_go']));
 
       $file = $_FILES['file']['name'];
       $fileName = $_FILES['file']['name'];
@@ -60,7 +60,7 @@
             $fileNameNew = uniqid($fileName2, true).".".$fileActualExt;
             $fileDestination = '../uploads/'.basename($fileName2.$fileNameNew);
 
-            $query = mysqli_query($con,"INSERT INTO user_transfers (USER_ID,TRANSFER_TITLE,file,PLACE_TO_GO) VALUES ('$USER_ID','$TRANSFER_TITLE','$fileNameNew','$PLACE_TO_GO')");
+            $query = mysqli_query($con,"INSERT INTO user_transfers (user_id,transfer_title,file,place_to_go) VALUES ('$user_id','$transfer_title','$fileNameNew','$place_to_go')");
 
 
             if($query && move_uploaded_file($fileTmpName, $fileDestination)){
@@ -92,11 +92,11 @@
 
     if(isset($_POST['edit'])){
       
-      $title = $_POST['title'];
-      $description = $_POST['description'];
+      $transfer_title = ucfirst(stripslashes(mysqli_real_escape_string($con,$_POST['transfer_title'])));
+      $place_to_go = ucfirst(mysqli_real_escape_string($con,$_POST['place_to_go']));
       $post_id = $_GET['id'];
 
-      $query = mysqli_query($con,"UPDATE details SET title = '$title',description = '$description' WHERE detail_id = $post_id");
+      $query = mysqli_query($con,"UPDATE user_transfers SET transfer_title = '$transfer_title', place_to_go = '$place_to_go' WHERE transfer_id = $post_id");
 
       if($query){
         echo '

@@ -1,7 +1,7 @@
 <?php
   require_once('../assets/config.php');
-  include_once('../functions/sendFunction.php');
-  include_once('../includes/session.php');
+  require_once('../functions/sendFunction.php');
+  require('../includes/sessionToBeRequired.php');
 
   //Getting the single id of post from post
   $transfer_id = $_GET['id'];
@@ -48,8 +48,8 @@
       <div id="content">
 
          <!-- Topbar -->
-         <?php include_once('../includes/topbar.php') ?>
-         <!-- End of Topbar -->
+        <?php require_once('../includes/workers_includes/topbar.php') ?>
+        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -68,32 +68,28 @@
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="titleHeadDetailed"><?php echo $row['TRANSFER_TITLE']?></h6>
+                  <h6 class="titleHeadDetailed"><?php echo $row['transfer_title']?></h6>
                 </div>
                 <div class="card-body cardTextDetailed">
                   <?php 
-<<<<<<< HEAD
                    // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>"; 
                    echo 'place to show files';
-=======
-                   echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>";
->>>>>>> 4bc793a7b289fa01e2a078798125a6ee173f184a
                   ?>
                   <p class="myPostDetailed">
                     <span class="buttons">
-                      <a href="index.php?id=<?php echo $row['TRANSFER_ID'];?>">
+                      <a href="index.php?id=<?php echo $row['transfer_id'];?>">
                         <button class="btn btn-danger">Delete</button>
                         <?php //deletePost(); ?>
                       </a>
                       
-                      <a href="editMyTransfer.php?id=<?php echo $row['TRANSFER_ID'];?>">
+                      <a href="editMyTransfer.php?id=<?php echo $row['transfer_id'];?>">
                         <button class="btn btn-info">Edit</button>
                       </a>
                     </span>
                   </p>
                   <p class="dateInfoDetailed">
                     <small>
-                      Created at <?php echo $row['CREATED_AT'];?>
+                      Created at <?php echo $row['created_at'];?>
                     </small>
                   </p>
                 </div>

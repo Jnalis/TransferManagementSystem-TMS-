@@ -3,10 +3,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon rotate-n-90">
+          <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">TMS Admin</div>
       </a>
 
       <!-- Divider -->
@@ -36,7 +36,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="sidebar-item" href="viewMyPost.php">
+        <a class="sidebar-item" href="viewMyTransfer.php">
           <i class="fas fa-home fa-sm fa-fw mr-2 text-white-400"></i>
           My Post
         </a>
@@ -61,7 +61,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="sidebar-item" href="../functions/logout.php">
+        <a class="sidebar-item" href="../logout.php">
 
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white-400"></i>
           Logout

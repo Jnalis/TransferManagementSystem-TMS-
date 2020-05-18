@@ -1,45 +1,50 @@
-.bg-gradient-primary{
-background-color: #c2c7cf;
-background-image: none;
+.small, small {
+  font-size: 95%;
+  font-weight: 400;
+  color: black;
+}
+.bg-gradient-primary {
+  background-color: #c2c7cf;
+  background-image: none;
 }
 .bg-login-image {
-background: url("../img/default-avatar-png-7.png");
-background-position: center;
-background-size: cover;
+  background: url('../img/default-avatar-png-7.png');
+  background-position: center;
+  background-size: cover;
 }
-label{
-font-size: 16px;
-color: black;
+label {
+  font-size: 16px;
+  color: black;
 }
 .forgot-password {
-font-size: 80%;
-font-weight: 400;
-color: red;
+  font-size: 80%;
+  font-weight: 400;
+  color: red;
 }
-.create-account{
-color: #33cc33;
+.create-account {
+  color: #33cc33;
 }
-.h4{
-color: #000;
+.h4 {
+  color: #000;
 }
-.message{
-text-align: center;
-padding: 10px;
-margin: 55% 5% 0 5%;
-color: black;
-font-weight: bold;
-font-size: xx-large;
+.message {
+  text-align: center;
+  padding: 10px;
+  margin: 55% 5% 0 5%;
+  color: black;
+  font-weight: bold;
+  font-size: xx-large;
 }
 form.user .form-control-user {
-font-size: .8rem;
-border-radius: 10px;
-padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
 }
-.radio_buttons{
-margin: 10px auto;
+.radio_buttons {
+  margin: 10px auto;
 }
 @media screen and (max-width: 425px) {
-  .radio_buttons{
+  .radio_buttons {
     margin-left: 20px;
   }
 }

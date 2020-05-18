@@ -1,7 +1,44 @@
 <?php
-  require('assets/config.php');
-  require('functions/loginFunction.php');
- 
+require('assets/config.php');
+session_start();
+require("functions/sessionFunction.php");
+$message = "";
+if (isset($_POST['login'])) {
+  $email = stripslashes(mysqli_real_escape_string($con, $_POST['email']));
+  $password = stripslashes(mysqli_real_escape_string($con, $_POST['password']));
+
+  $result = mysqli_query($con, "SELECT * FROM user_info WHERE email = '$email' AND password = '$password'") or die('Ooops! Something is wrong');
+
+  if ($row = mysqli_fetch_array($result)) {
+    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['fname'] = $row['firstname'];
+    $_SESSION['mname'] = $row['middlename'];
+    $_SESSION['sname'] = $row['surname'];
+    $_SESSION['loggedin_time'] = time();
+
+    
+  } else {
+    $message = "Invalid Username or Password!";
+  }
+}
+if (isset($_SESSION["user_id"])) {
+  if (!isLoginSessionExpired()) {
+    if ($row['role'] == 'Head of institution') {
+      header("Location:Admin/index.php");
+    } else {
+      header("Location:workers/index.php");
+    }
+    
+  } else {
+    header("Location:logout.php?session_expired=1");
+  }
+}
+
+if (isset($_GET["session_expired"])) {
+  $message = "Session is Expired. Please Login Again.";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +82,9 @@
                   </div>
 
                   <form class="user" method="POST" action="">
-                    <?php login(); ?>
-
+                    <?php if ($message != "") { ?>
+                      <div class="alert alert-danger" role="alert"><?php echo $message; ?></div>
+                    <?php } ?>
                     <div class="form-group">
                       <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
@@ -68,7 +106,7 @@
                     <div class="text-center">
                       <a class=" create-account" href="forms/register.php">Create an Account!</a>
                     </div>
-                    
+
                     <div class="text-center">
                       <a class=" forgot-password" href="forgot-password.html">Forgot Password?</a>
                     </div>

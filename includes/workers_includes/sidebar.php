@@ -55,7 +55,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="sidebar-item" href="../functions/logout.php">
+        <a class="sidebar-item" href="../logout.php">
 
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white-400"></i>
           Logout

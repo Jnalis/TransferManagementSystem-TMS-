@@ -1,10 +1,10 @@
 <?php
 require_once('../assets/config.php');
 require_once('../functions/sendFunction.php');
-include_once('../includes/session.php');
+require('../includes/sessionToBeRequired.php');
 
 $transfer_id = $_GET['id'];
-$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE TRANSFER_ID = $transfer_id");
+$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
 $row = mysqli_fetch_assoc($result);
 
 
@@ -14,7 +14,7 @@ $row = mysqli_fetch_assoc($result);
 
 <head>
 
-  <?php include_once('../includes/metaTags.php') ?>
+  <?php require_once('../includes/metaTags.php') ?>
 
   <title>TMS Home</title>
 
@@ -35,7 +35,7 @@ $row = mysqli_fetch_assoc($result);
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php include_once('../includes/workers_includes/sidebar.php'); ?>
+    <?php require_once('../includes/workers_includes/sidebar.php'); ?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -44,7 +44,7 @@ $row = mysqli_fetch_assoc($result);
       <div id="content">
 
         <!-- Topbar -->
-        <?php include_once('../includes/topbar.php') ?>
+        <?php require_once('../includes/workers_includes/topbar.php') ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -63,7 +63,7 @@ $row = mysqli_fetch_assoc($result);
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Title of Transfer</label>
               <div class="col-sm-10">
-                <input type="text" name="title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row['TRANSFER_TITLE']; ?>" required>
+                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row['transfer_title']; ?>" required>
               </div>
             </div>
 
@@ -75,6 +75,14 @@ $row = mysqli_fetch_assoc($result);
                 ?>
                 <br>
                 <input type="file" name="file" id="document">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="title">Place you want to go</label>
+              <div class="col-sm-10">
+                <small>Please follow this format of district,region eg: ubungo,dar es salaam NOTE:shortform of region or district names is disallowed</small>
+                <input type="text" name="place_to_go" class="form-control" id="title" placeholder="Enter place to go.." value="<?php echo $row['place_to_go']; ?>" required>
               </div>
             </div>
 
@@ -95,7 +103,7 @@ $row = mysqli_fetch_assoc($result);
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <?php include_once('../includes/footer.php'); ?>
+      <?php require_once('../includes/footer.php'); ?>
       <!-- End of Footer -->
 
     </div>

@@ -1,7 +1,7 @@
 <?php
   require_once('../assets/config.php');
   require_once('../functions/sendFunction.php');
-  include_once('../includes/session.php'); 
+  require('../includes/sessionToBeRequired.php');
 
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 
 <head>
 
-  <?php include_once('../includes/metaTags.php') ?>
+  <?php require_once('../includes/metaTags.php') ?>
 
   <title>TMS Home</title>
 
@@ -41,7 +41,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <?php include_once('../includes/topbar.php') ?>
+        <?php require_once('../includes/workers_includes/topbar.php') ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -60,7 +60,7 @@
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Title of Transfer</label>
               <div class="col-sm-10">
-                <input type="text" name="TRANSFER_TITLE" class="form-control" id="title" placeholder="Enter Title" required>
+                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" required>
               </div>
             </div>
 
@@ -82,7 +82,8 @@
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Place you want to go</label>
               <div class="col-sm-10">
-                <input type="text" name="PLACE_TO_GO" class="form-control" id="title" placeholder="Enter place to go.." required>
+                <small>Please follow this format of district,region eg: ubungo,dar es salaam NOTE:shortform of region or district names is disallowed</small>
+                <input type="text" name="place_to_go" class="form-control" id="title" placeholder="Enter place to go.." required>
               </div>
             </div>
             

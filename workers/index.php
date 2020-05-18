@@ -1,8 +1,8 @@
 <?php
 require('../assets/config.php');
-require('../includes/session.php');
+require('../includes/sessionToBeRequired.php');
 
-$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE USER_ID = $USER_ID ORDER BY TRANSFER_ID DESC");
+$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY transfer_id DESC");
 
 $count = mysqli_num_rows($result);
 ?>
@@ -11,7 +11,7 @@ $count = mysqli_num_rows($result);
 
 <head>
 
-  <?php include_once('../includes/metaTags.php') ?>
+  <?php require_once('../includes/metaTags.php') ?>
 
   <title>TMS Home</title>
 
@@ -33,7 +33,7 @@ $count = mysqli_num_rows($result);
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php include_once('../includes/workers_includes/sidebar.php'); ?>
+    <?php require_once('../includes/workers_includes/sidebar.php'); ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -43,7 +43,7 @@ $count = mysqli_num_rows($result);
       <div id="content">
 
         <!-- Topbar -->
-        <?php include_once('../includes/topbar.php') ?>
+        <?php require_once('../includes/workers_includes/topbar.php') ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -52,6 +52,7 @@ $count = mysqli_num_rows($result);
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            
 
           </div>
 
@@ -91,11 +92,11 @@ $count = mysqli_num_rows($result);
                 <div class="col-lg-9">
                   <!-- Basic Card Example -->
                   <!-- the anchor tag has a php inside just to pass it to the url and its more dynamic to access data from db -->
-                  <a href="viewTransfer.php?id=<?php echo $row['TRANSFER_ID']; ?>" id="moreInfo" class="test-zali">
+                  <a href="viewTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
                     <div class="card shadow mb-4">
                       <div class="card-header py-3">
                         <h6 class="titleHead">
-                          <?php echo strtoupper($row['TRANSFER_TITLE']); ?>
+                          <?php echo strtoupper($row['transfer_title']); ?>
                         </h6>
                       </div>
                       <div class="card-body cardText">
@@ -106,13 +107,13 @@ $count = mysqli_num_rows($result);
                           <p class="doc">
                             <?php
                             // echo "<iframe src=\"../uploads/".$row['FILE']."\" width=\"100%\" style=\"height:100%\"></iframe>";
-                            echo $row['FILE']; ?>
+                            echo $row['file']; ?>
                           </p>
                         </p>
 
                         <p class="dateInfoDetailed">
                           <small>
-                            Created at <?php echo $row['CREATED_AT']; ?>
+                            Created at <?php echo $row['created_at']; ?>
                           </small>
                         </p>
                         </p>
@@ -134,7 +135,7 @@ $count = mysqli_num_rows($result);
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <?php include_once('../includes/footer.php'); ?>
+      <?php require_once('../includes/footer.php'); ?>
       <!-- End of Footer -->
 
     </div>
