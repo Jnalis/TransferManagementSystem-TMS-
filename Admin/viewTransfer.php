@@ -5,9 +5,16 @@ require('../includes/sessionToBeRequired.php');
 //Getting the single id of post from post
 $transfer_id = $_GET['id'];
 
-$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
+$result = mysqli_query($con, "UPDATE user_transfers SET viewed = 'YES' WHERE transfer_id = $transfer_id");
+$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE transfer_id = $transfer_id AND viewed = 'YES'");
 
 $row = mysqli_fetch_assoc($result);
+$filenamelong = explode('5', $row['file']);
+$filenameshort = $filenamelong[0];
+$fileext = explode('.', $row['file']);
+$fileextension = $fileext[2];
+$datelong = explode(' ', $row['created_at']);
+$date = $datelong[0];
 
 //echo $row['description'];
 
@@ -71,15 +78,15 @@ $row = mysqli_fetch_assoc($result);
                 </div>
                 <div class="card-body cardTextDetailed">
                   <i class="fas fa-file-pdf pdfIcon"></i>
-                  <span><?php echo substr($row['file'], 0, 10) . '......' ?></span>
+                  <span><?php echo $filenameshort . '.' . $fileextension; ?></span>
                   <p class="pdfP">
-                    <a href="../includes/download.php?file=<?php echo urlencode($row['file']); ?>" class="pdfLink">Download</a>
+                    <a href="../includes/download.php?file=<?php echo urlencode($row['file']); ?>" class="pdfLink">Open the document</a>
                   </p>
-                  <p class="dateInfoDetailed">
-                    <small>
-                      Created at <?php echo $row['created_at']; ?>
-                    </small>
-                  </p>
+                </div>
+                <div class="row dateInfoWorker">
+                  <div class="col">
+                    <p class="someInfo">Created at <?php echo $date; ?></p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,12 +1,12 @@
 <?php
-  require_once('../assets/config.php');
-  require_once('../functions/sendFunction.php');
-  require('../includes/sessionToBeRequired.php');
+require_once('../assets/config.php');
+require_once('../functions/sendFunction.php');
+require('../includes/sessionToBeRequired.php');
 
 
-  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY created_at DESC");
+$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY created_at DESC");
 
-  $count = mysqli_num_rows($result);
+$count = mysqli_num_rows($result);
 
 
 ?>
@@ -44,9 +44,9 @@
       <!-- Main Content -->
       <div id="content">
 
-         <!-- Topbar -->
-         <?php require_once('../includes/topbar.php') ?>
-         <!-- End of Topbar -->
+        <!-- Topbar -->
+        <?php require_once('../includes/topbar.php') ?>
+        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -63,9 +63,9 @@
             <div class="col-lg-8">
 
               <!-- Basic Card Example -->
-              <?php 
-                if(!$count > 0){
-                  echo '
+              <?php
+              if (!$count > 0) {
+                echo '
                   <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
@@ -78,42 +78,44 @@
                     <div class="col-lg-2"></div>
                   </div>
                   ';
-                }
-                else {
-                  while($row=mysqli_fetch_assoc($result)){
+              } else {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $filenamelong = explode('5', $row['file']);
+                  $filenameshort = $filenamelong[0];
+                  $fileext = explode('.', $row['file']);
+                  $fileextension = $fileext[2];
+                  $datelong = explode(' ', $row['created_at']);
+                  $date = $datelong[0];
               ?>
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="titleHeadDetailed">
-                    <?php echo $row['transfer_title']?>
-                  </h6>
-                </div>
-                <div class="card-body cardTextDetailed">
-                  <!-- <?php echo $row['description']?> -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="titleHeadDetailed">
+                        <?php echo $row['transfer_title'] ?>
+                      </h6>
+                    </div>
+                    <div class="card-body cardTextDetailed">
+                      <i class="fas fa-file-pdf pdfIcon"></i>
+                      <span><?php echo $filenameshort . '.' . $fileextension; ?></span>
+                    </div>
+                    <div class="row dateInfoWorker">
+                      <div class="col">
+                        <?php deletePost(); ?>
+                        <a href="viewMyTransfer.php?id=<?php echo $row['transfer_id']; ?>" class="btn btn-danger">Delete</a>
 
 
-                  <p class="myPostDetailed">
-                    <small>
-                      Created at <?php echo $row['created_at'];?>
-                    </small>
-                    <span class="buttons">
-                      <?php deletePost(); ?>
-                      <a href="viewMyTransfer.php?id=<?php echo $row['transfer_id'];?>">
-                        <button class="btn btn-danger">Delete</button>
-                      </a>
-                      
-                      <a href="editMyTransfer.php?id=<?php echo $row['transfer_id'];?>">
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                    </span>
-                  </p>
-                </div>
-              </div>
-                  <?php } }?>
+                        <a href="editMyTransfer.php?id=<?php echo $row['transfer_id']; ?>" class="btn btn-info">Edit</a>
+                      </div>
+                      <div class="col">
+                        <p class="someInfo">Created at <?php echo $date; ?></p>
+                      </div>
+                    </div>
+                  </div>
+              <?php }
+              } ?>
 
             </div>
             <div class="col-lg-2"></div>
-          </div>    
+          </div>
         </div>
         <!-- /.container-fluid -->
 

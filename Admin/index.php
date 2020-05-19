@@ -86,34 +86,38 @@ $count = mysqli_num_rows($result);
             if (!$count > 0) {
               echo 'There is no post yet';
             } else {
-              while ($row = mysqli_fetch_assoc($result)) { ?>
-                <div class="col">
+              while ($row = mysqli_fetch_assoc($result)) {
+                $filenamelong = explode('5', $row['file']);
+                $filenameshort = $filenamelong[0];
+                $fileext = explode('.', $row['file']);
+                $fileextension = $fileext[2];
+                $datelong = explode(' ', $row['created_at']);
+                $date = $datelong[0];
+            ?>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
                   <!-- Basic Card Example -->
                   <!-- the anchor tag has a php inside just to pass it to the url and its more dynamic to access data from db -->
-                  <a href="viewTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
-                    <div class="card shadow mb-4">
-                      <div class="card-header py-3">
-                        <h6 class="titleHead">
-                          <?php echo strtoupper($row['transfer_title']); ?>
-                        </h6>
-                      </div>
-                      <div class="card-body cardText">
-                        <p>
-                          I have attached the following document
-                          <p class="doc">
-                            <?php echo $row['file']; ?>
-                          </p>
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="titleHead">
+                        <?php echo strtoupper($row['transfer_title']); ?>
+                      </h6>
+                    </div>
+                    <div class="card-body cardText">
+                      <a href="viewTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
+                        <p class="doc">
+                          <i class="fas fa-file-pdf pdfIcon"></i>
+                          <?php echo $filenameshort . '.' . $fileextension; ?>
                         </p>
-
-                        <p class="dateInfoDetailed">
-                          <small>
-                            Created at <?php echo $row['created_at']; ?>
-                          </small>
-                        </p>
-                        </p>
+                      </a>
+                    </div>
+                    <div class="row dateInfoWorker">
+                      <div class="col">
+                        <p class="someInfo">Created at <?php echo $date; ?></p>
                       </div>
                     </div>
-                  </a>
+                  </div>
+
                 </div>
             <?php }
             } ?>

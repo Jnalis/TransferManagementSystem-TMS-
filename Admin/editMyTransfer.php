@@ -63,19 +63,10 @@
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Title of Transfer</label>
               <div class="col-sm-10">
-                <input type="text" name="title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row['transfer_title']; ?>" required>
+                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row['transfer_title']; ?>" required>
               </div>
             </div>
             
-            <!-- <div class="form-group row">
-              <label class="control-label col-sm-2" for="description">Description</label>
-              <div class="col-sm-10">
-                <textarea id="subject" name="description" rows="10" placeholder="Write something.." required>
-                  <?php echo $row['description'] ?>
-                </textarea>
-              </div>
-            </div> -->
-
             <div class="form-group row">
               <label class="control-label col-sm-2" for="document">Document</label>
               <div class="col-sm-10">

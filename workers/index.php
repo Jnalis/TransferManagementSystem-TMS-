@@ -5,6 +5,7 @@ require('../includes/sessionToBeRequired.php');
 $result = mysqli_query($con, "SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY transfer_id DESC");
 
 $count = mysqli_num_rows($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@ $count = mysqli_num_rows($result);
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            
+
 
           </div>
 
@@ -86,42 +87,50 @@ $count = mysqli_num_rows($result);
             if (!$count > 0) {
               echo '<a href="post.php" class="btn btn-primary">Go to Post</a>';
             } else {
-              while ($row = mysqli_fetch_assoc($result)) { ?>
+              while ($row = mysqli_fetch_assoc($result)) {
+                $filenamelong = explode('5', $row['file']);
+                $filenameshort = $filenamelong[0];
+                $fileext = explode('.', $row['file']);
+                $fileextension = $fileext[2];
+                $datelong = explode(' ', $row['created_at']);
+                $date = $datelong[0];
 
-                <div class="col-lg-2"></div>
-                <div class="col-lg-9">
+                $status = $row['viewed'];
+
+            ?>
+
+
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <!-- Basic Card Example -->
                   <!-- the anchor tag has a php inside just to pass it to the url and its more dynamic to access data from db -->
-                  <a href="viewTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
-                    <div class="card shadow mb-4">
-                      <div class="card-header py-3">
-                        <h6 class="titleHead">
-                          <?php echo strtoupper($row['transfer_title']); ?>
-                        </h6>
-                      </div>
-                      <div class="card-body cardText">
-                        <p>
-                          I have attached the following document
-                          <br>
-                          place to show files
-                          <p class="doc">
-                            <?php
-                            // echo "<iframe src=\"../uploads/".$row['FILE']."\" width=\"100%\" style=\"height:100%\"></iframe>";
-                            echo $row['file']; ?>
-                          </p>
-                        </p>
 
-                        <p class="dateInfoDetailed">
-                          <small>
-                            Created at <?php echo $row['created_at']; ?>
-                          </small>
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="titleHead">
+                        <?php echo strtoupper($row['transfer_title']); ?>
+                      </h6>
+                    </div>
+
+                    <div class="card-body cardText">
+                      <a href="viewTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
+                        <p class="doc">
+                          <i class="fas fa-file-pdf pdfIcon"></i>
+                          <?php echo $filenameshort . '.' . $fileextension; ?>
                         </p>
-                        </p>
+                      </a>
+                    </div>
+                    <div class="row dateInfoWorker">
+                      <div class="col">
+                        <p class="viewed">Viewed already? <span class="showStatus"><?php echo $status; ?></span></p>
+                      </div>
+                      <div class="col">
+                        <p class="someInfo">Created at <?php echo $date; ?></p>
                       </div>
                     </div>
-                  </a>
+                  </div>
+
                 </div>
-                <div class="col-lg-1"></div>
+
             <?php }
             } ?>
 

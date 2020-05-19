@@ -37,7 +37,6 @@
   color: chocolate;
   font-size: 20px;
   font-weight: 500;
-  font-style: italic;
 }
 .titleHeadDetailed{
   color: chocolate;
@@ -57,6 +56,30 @@
   font-size: smaller;
   margin-top: 25px;
   margin-bottom: -15px;
+}
+.dateInfoWorker{
+  background-color: darkseagreen;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin: 0;
+}
+.someInfo{
+  color: #000;
+  font-size: medium;
+  text-align: right;
+  padding: 15px 20px 5px 15px;
+}
+.viewed{
+  color: black;
+  font-size: medium;
+  text-align: center;
+  padding: 15px 20px 5px 15px;
+}
+.showStatus{
+  background-color: #595959;
+  color: #fff;
+  padding: 10px;
+  border-radius: 15px;
 }
 .myPostDetailed {
   text-align: left;
@@ -82,7 +105,7 @@ a:hover{
   margin-left: 50px;
 }
 .pdfIcon{
-  color: #4CAF50;
+  color: darkred;
   font-size: 40px;
   padding-right: 5%;
 }
