@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2020 at 12:58 PM
+-- Generation Time: May 22, 2020 at 12:30 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.16
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `tms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reset_password`
+--
+
+CREATE TABLE `reset_password` (
+  `pass_id` int(11) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -54,7 +66,8 @@ INSERT INTO `user_info` (`user_id`, `firstname`, `middlename`, `surname`, `gende
 (11, 'Admin', 'Admin', 'Admin', 'Male', 1987, 'admin@gmail.com', '0623512407', 'Iyunga,mbeya', 'Head of institution', '1234'),
 (13, 'Teller', 'Teller', 'Teller', 'Female', 1997, 'teller@gmail.com', '0757334887', 'Temeke,dar es salaam', 'workers', '1234'),
 (14, 'Re', 'Re', 'Er', 'Female', 1996, 're@gmail.com', '0757334887', 'Ifunda,iringa', 'workers', '1234'),
-(15, 'Teacher', 'Teacher', 'Teacher', 'Male', 1966, 'teacher@gmail.com', '0757334887', 'Rombo,kilimanjaro', 'workers', '1234');
+(15, 'Teacher', 'Teacher', 'Teacher', 'Male', 1966, 'jnalisjmson6@gmail.com', '0757334887', 'Rombo,kilimanjaro', 'workers', '12345'),
+(16, 'juve', 'juve', 'juve', 'Male', 1997, 'erickkatikiro@gmail.com', '0757334887', 'temboni,dar es salaam', 'workers', '1234');
 
 -- --------------------------------------------------------
 
@@ -103,6 +116,12 @@ INSERT INTO `user_transfers` (`transfer_id`, `user_id`, `transfer_title`, `file`
 --
 
 --
+-- Indexes for table `reset_password`
+--
+ALTER TABLE `reset_password`
+  ADD PRIMARY KEY (`pass_id`);
+
+--
 -- Indexes for table `user_info`
 --
 ALTER TABLE `user_info`
@@ -121,10 +140,16 @@ ALTER TABLE `user_transfers`
 --
 
 --
+-- AUTO_INCREMENT for table `reset_password`
+--
+ALTER TABLE `reset_password`
+  MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user_transfers`

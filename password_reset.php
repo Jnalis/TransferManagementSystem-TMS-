@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 require_once('assets/config.php');
-require_once('includes/login.php');
+require_once('includes/requestReset.php');
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ require_once('includes/login.php');
 
   <?php include_once('includes/metaTags.php') ?>
 
-  <title>TMS - Login</title>
+  <title>TMS - password reset</title>
 
   <!-- Custom fonts for this template-->
   <link href="styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,41 +41,21 @@ require_once('includes/login.php');
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">TMS - Login</h1>
+                    <h3 style=" font-size: 30px;" class="alert alert-danger">
+                      <center><strong>Forgot password?.</strong></center>
+                    </h3>
+                    <p style="font-size: 15px; color: black; text-align: center">
+                      We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!
+                    </p>
                   </div>
 
                   <form class="user" method="POST" action="">
-                    <?php if ($message != "") { ?>
-                      <div class="alert alert-danger" role="alert"><?php echo $message; ?></div>
-                    <?php } ?>
                     <div class="form-group">
-                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" title="Please enter your Email" aria-describedby="emailHelp" placeholder="Enter Email Address..." required>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" pattern="^\S{4,}$" title="Please enter your password NB: password cannot contain these characters ^\S{4,}$" placeholder="Password" required>
-                    </div>
-
-
-                    <div class="form-group">
-                      <div class="custom-control custom-switch small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
+                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" title="Please enter your Email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
 
                     <div class="controls">
-                      <button class="btn btn-success btn-block" type="submit" name="login">Login</button>
-                    </div>
-
-
-                    <div class="text-center">
-                      <a class=" create-account" href="forms/register.php">Create an Account!</a>
-                    </div>
-
-                    <div class="text-center">
-                      <a class=" forgot-password" href="password_reset.php">Forgot Password?</a>
-                      
+                      <button class="btn btn-success btn-block" type="submit" name="request">Request</button>
                     </div>
                   </form>
                 </div>
@@ -90,7 +70,7 @@ require_once('includes/login.php');
 
   </div>
 
-  <?php require_once('includes/footer.php')?>
+  <?php require_once('includes/footer.php') ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="styles/vendor/jquery/jquery.min.js"></script>
