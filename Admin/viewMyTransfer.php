@@ -4,9 +4,12 @@ require_once('../functions/sendFunction.php');
 require('../includes/sessionToBeRequired.php');
 
 
-$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY created_at DESC");
+$result = $conn->prepare("SELECT * FROM user_transfers WHERE user_id = $user ORDER BY created_at DESC");
 
-$count = mysqli_num_rows($result);
+$result->execute();
+$stmt = $result->fetchAll();
+
+$count = $result->rowCount(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -79,7 +82,8 @@ $count = mysqli_num_rows($result);
                   </div>
                   ';
               } else {
-                while ($row = mysqli_fetch_assoc($result)) {
+                foreach ($stmt as $row) {
+
                   $filenamelong = explode('5', $row['file']);
                   $filenameshort = $filenamelong[0];
                   $fileext = explode('.', $row['file']);
@@ -88,6 +92,7 @@ $count = mysqli_num_rows($result);
                   $date = $datelong[0];
               ?>
                   <div class="card shadow mb-4">
+                    
                     <div class="card-header py-3">
                       <h6 class="titleHeadDetailed">
                         <?php echo $row['transfer_title'] ?>

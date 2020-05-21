@@ -1,6 +1,6 @@
 <?php
   require_once('../assets/config.php');
-  require_once('../functions/sendFunction.php');
+  require_once('../functions/sendFunctionWorker.php');
   require('../includes/sessionToBeRequired.php');
 
 ?>
@@ -63,15 +63,7 @@
                 <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" required>
               </div>
             </div>
-
-            <!-- <div class="form-group row">
-              <label class="control-label col-sm-2" for="description">Reason for transfer</label>
-              <div class="col-sm-10">
-                <textarea id="subject" name="description" rows="5" placeholder="Write something about your transfer"
-                  ></textarea>
-              </div>
-            </div> -->
-
+            
             <div class="form-group row">
               <label class="control-label col-sm-2" for="document">Document</label>
               <div class="col-sm-10">

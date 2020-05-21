@@ -2,9 +2,10 @@
 require('../assets/config.php');
 require('../includes/sessionToBeRequired.php');
 
-$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE user_id = $user_id ORDER BY transfer_id DESC");
-
-$count = mysqli_num_rows($result);
+$result = $conn->prepare("SELECT * FROM user_transfers WHERE user_id = $user ORDER BY transfer_id DESC");
+$result->execute();
+$count = $result->rowCount();
+$rows = $result->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -87,7 +88,8 @@ $count = mysqli_num_rows($result);
             if (!$count > 0) {
               echo '<a href="post.php" class="btn btn-primary">Go to Post</a>';
             } else {
-              while ($row = mysqli_fetch_assoc($result)) {
+              foreach ($rows as $row) {
+
                 $filenamelong = explode('5', $row['file']);
                 $filenameshort = $filenamelong[0];
                 $fileext = explode('.', $row['file']);
@@ -112,7 +114,7 @@ $count = mysqli_num_rows($result);
                     </div>
 
                     <div class="card-body cardText">
-                      <a href="viewTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
+                      <a href="viewMyTransfer.php?id=<?php echo $row['transfer_id']; ?>" id="moreInfo" class="test-zali">
                         <p class="doc">
                           <i class="fas fa-file-pdf pdfIcon"></i>
                           <?php echo $filenameshort . '.' . $fileextension; ?>

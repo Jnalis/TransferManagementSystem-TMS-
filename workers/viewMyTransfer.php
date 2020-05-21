@@ -1,16 +1,18 @@
 <?php
-  require_once('../assets/config.php');
-  require_once('../functions/sendFunction.php');
-  require('../includes/sessionToBeRequired.php');
+error_reporting(E_ALL);
+require_once('../assets/config.php');
+require_once('../functions/sendFunction.php');
+require('../includes/sessionToBeRequired.php');
 
-  //Getting the single id of post from post
-  $transfer_id = $_GET['id'];
+//Getting the single id of post from post
+$transfer_id = $_GET['id'];
 
-  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
+$result = $conn->prepare("SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
+$result->execute();
 
-  $row=mysqli_fetch_assoc($result);
-  
-  //echo $row['description'];
+$stmt = $result->fetchAll();
+
+//echo $row['description'];
 
 ?>
 <!DOCTYPE html>
@@ -47,7 +49,7 @@
       <!-- Main Content -->
       <div id="content">
 
-         <!-- Topbar -->
+        <!-- Topbar -->
         <?php require_once('../includes/workers_includes/topbar.php') ?>
         <!-- End of Topbar -->
 
@@ -65,38 +67,50 @@
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
 
-              <!-- Basic Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="titleHeadDetailed"><?php echo $row['transfer_title']?></h6>
+              <?php
+              foreach ($stmt as $row) {
+                $filenamelong = explode('5', $row['file']);
+                $filenameshort = $filenamelong[0];
+                $fileext = explode('.', $row['file']);
+                $fileextension = $fileext[2];
+                $datelong = explode(' ', $row['created_at']);
+                $date = $datelong[0];
+
+              ?>
+                <!-- Basic Card Example -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="titleHeadDetailed"><?php echo $row['transfer_title'] ?></h6>
+                  </div>
+                  <div class="card-body cardTextDetailed">
+                    <?php
+                    // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>"; 
+                    echo 'place to show files';
+                    ?>
+                    <p class="myPostDetailed">
+                      <span class="buttons">
+                        <a href="index.php?id=<?php echo $row['transfer_id']; ?>">
+                          <button class="btn btn-danger">Delete</button>
+                          <?php //deletePost(); 
+                          ?>
+                        </a>
+
+                        <a href="editMyTransfer.php?id=<?php echo $row['transfer_id']; ?>">
+                          <button class="btn btn-info">Edit</button>
+                        </a>
+                      </span>
+                    </p>
+                    <p class="dateInfoDetailed">
+                      <small>
+                        Created at <?php echo $row['created_at']; ?>
+                      </small>
+                    </p>
+                  </div>
                 </div>
-                <div class="card-body cardTextDetailed">
-                  <?php 
-                   // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>"; 
-                   echo 'place to show files';
-                  ?>
-                  <p class="myPostDetailed">
-                    <span class="buttons">
-                      <a href="index.php?id=<?php echo $row['transfer_id'];?>">
-                        <button class="btn btn-danger">Delete</button>
-                        <?php //deletePost(); ?>
-                      </a>
-                      
-                      <a href="editMyTransfer.php?id=<?php echo $row['transfer_id'];?>">
-                        <button class="btn btn-info">Edit</button>
-                      </a>
-                    </span>
-                  </p>
-                  <p class="dateInfoDetailed">
-                    <small>
-                      Created at <?php echo $row['created_at'];?>
-                    </small>
-                  </p>
-                </div>
-              </div>
+              <?php } ?>
             </div>
             <div class="col-lg-3"></div>
-          </div>    
+          </div>
         </div>
         <!-- /.container-fluid -->
 

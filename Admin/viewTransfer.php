@@ -5,15 +5,23 @@ require('../includes/sessionToBeRequired.php');
 //Getting the single id of post from post
 $transfer_id = $_GET['id'];
 
-$result = mysqli_query($con, "UPDATE user_transfers SET viewed = 'YES' WHERE transfer_id = $transfer_id");
-$result = mysqli_query($con, "SELECT * FROM user_transfers WHERE transfer_id = $transfer_id AND viewed = 'YES'");
+$sql = $conn -> prepare("UPDATE user_transfers SET viewed = 'YES' WHERE transfer_id = $transfer_id");
+$sql -> execute();
 
-$row = mysqli_fetch_assoc($result);
-$filenamelong = explode('5', $row['file']);
+$result = $conn -> prepare("SELECT * FROM user_transfers WHERE transfer_id = $transfer_id AND viewed = 'YES'");
+
+$result -> execute();
+$count = $result -> rowCount();
+$row = $result -> fetchAll(PDO::FETCH_ASSOC);
+// print_r($rows[0]['transfer_id']);
+
+// die();
+
+$filenamelong = explode('5', $row[0]['file']);
 $filenameshort = $filenamelong[0];
-$fileext = explode('.', $row['file']);
+$fileext = explode('.', $row[0]['file']);
 $fileextension = $fileext[2];
-$datelong = explode(' ', $row['created_at']);
+$datelong = explode(' ', $row[0]['created_at']);
 $date = $datelong[0];
 
 //echo $row['description'];
@@ -74,13 +82,13 @@ $date = $datelong[0];
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="titleHeadDetailed"><?php echo $row['transfer_title'] ?></h6>
+                  <h6 class="titleHeadDetailed"><?php echo $row[0]['transfer_title'] ?></h6>
                 </div>
                 <div class="card-body cardTextDetailed">
                   <i class="fas fa-file-pdf pdfIcon"></i>
                   <span><?php echo $filenameshort . '.' . $fileextension; ?></span>
                   <p class="pdfP">
-                    <a href="../includes/download.php?file=<?php echo urlencode($row['file']); ?>" class="pdfLink">Open the document</a>
+                    <a href="../includes/download.php?file=<?php echo urlencode($row[0]['file']); ?>" class="pdfLink">Open the document</a>
                   </p>
                 </div>
                 <div class="row dateInfoWorker">

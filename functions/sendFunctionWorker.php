@@ -3,62 +3,6 @@
 require_once('../assets/config.php');
 error_reporting(0);
 
-function register()
-{
-  global $conn;
-
-  if (isset($_POST['submit'])) {
-
-    $firstname = ucfirst(stripslashes($_POST['firstname']));
-    $middlename = ucfirst(stripslashes($_POST['middlename']));
-    $surname = ucfirst(stripslashes($_POST['surname']));
-    $gender = $_POST['gender'];
-    $yob = stripslashes($_POST['yob']);
-    $phone = stripslashes($_POST['phone']);
-    $email = stripslashes($_POST['email']);
-    $workPlace = ucfirst(stripslashes($_POST['workPlace']));
-    $role = 'workers';
-    $password = stripslashes($_POST['password']);
-    $confirmpassword = stripslashes($_POST['confirmPassword']);
-
-    // Query for validation of username and email-id
-    $ret = "SELECT * FROM user_info where (email=:email)";
-    $queryt = $conn->prepare($ret);
-    $queryt->bindParam(':email', $email, PDO::PARAM_STR);
-    $queryt->execute();
-
-    $results = $queryt->fetchAll(PDO::FETCH_OBJ);
-    if ($queryt->rowCount() == 0) {
-      // Query for Insertion
-      $sql = "INSERT INTO user_info (firstname,middlename,surname,gender,yob,email,phone,workPlace,role,password) VALUES ('$firstname','$middlename', '$surname', '$gender', '$yob', '$email', '$phone', '$workPlace', '$role', '$password')";
-
-      $query = $conn->prepare($sql);
-      // Binding Post Values
-      $query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
-      $query->bindParam(':middlename', $middlename, PDO::PARAM_STR);
-      $query->bindParam(':surname', $surname, PDO::PARAM_STR);
-      $query->bindParam(':gender', $gender, PDO::PARAM_INT);
-      $query->bindParam(':yob', $yob, PDO::PARAM_STR);
-      $query->bindParam(':email', $email, PDO::PARAM_STR);
-      $query->bindParam(':phone', $phone, PDO::PARAM_STR);
-      $query->bindParam(':workPlace', $workPlace, PDO::PARAM_STR);
-      $query->bindParam(':role', $role, PDO::PARAM_STR);
-      $query->bindParam(':password', $password, PDO::PARAM_STR);
-      $query->execute();
-
-      $lastInsertId = $conn->lastInsertId();
-      if ($lastInsertId) {
-        header("location:../index.php");
-        exit;
-      } else {
-        echo "Something went wrong.Please try again";
-      }
-    } else {
-      echo "Username or Email-id already exist. Please try again";
-    }
-  }
-}
-
 function postSend()
 {
   global $conn;
@@ -99,7 +43,7 @@ function postSend()
 
           if ($stmt && move_uploaded_file($fileTmpName, $fileDestination)) {
             echo '
-              <script type=\'text/javascript\'> document.location = \'viewMyTransfer.php\'; </script>;
+              <script type=\'text/javascript\'> document.location = \'index.php\'; </script>;
               <div class="alert alert-success" role="alert">
                 Post Added Successfully
               </div>';
@@ -135,7 +79,7 @@ function editPost()
 
     if ($query) {
       echo "
-      <script type='text/javascript'> document.location = 'viewMyTransfer.php'; </script>;
+      <script type='text/javascript'> document.location = 'index.php'; </script>;
         <div class=\"alert alert-success\" role=\"alert\">
           Modification done Successfully
         </div>";

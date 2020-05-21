@@ -2,11 +2,12 @@
 require_once('../assets/config.php');
 require('../includes/sessionToBeRequired.php');
 
-$id = $_SESSION['user_id'];
-$query = "SELECT ut.transfer_id,ut.user_id,ut.transfer_title,ut.file,ut.place_to_go,ut.created_at,ui.user_id,ui.workPlace FROM user_transfers AS ut INNER JOIN user_info AS ui ON ut.place_to_go = ui.workPlace WHERE $id = ui.user_id AND ut.viewed = 'NO' ORDER BY ut.transfer_id DESC";
-$result = mysqli_query($con, $query);
+$id = $_SESSION['user'];
+$sql = $conn->prepare("SELECT ut.transfer_id,ut.user_id,ut.transfer_title,ut.file,ut.place_to_go,ut.created_at,ui.user_id,ui.workPlace FROM user_transfers AS ut INNER JOIN user_info AS ui ON ut.place_to_go = ui.workPlace WHERE $id = ui.user_id AND ut.viewed = 'NO' ORDER BY ut.transfer_id DESC");
+$sql -> execute();
+$count = $sql -> rowCount();
+$rows = $sql -> fetchAll();
 
-$count = mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +87,8 @@ $count = mysqli_num_rows($result);
             if (!$count > 0) {
               echo 'There is no post yet';
             } else {
-              while ($row = mysqli_fetch_assoc($result)) {
+              foreach ($rows as $row) {
+               
                 $filenamelong = explode('5', $row['file']);
                 $filenameshort = $filenamelong[0];
                 $fileext = explode('.', $row['file']);

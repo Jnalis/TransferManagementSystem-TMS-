@@ -1,11 +1,12 @@
 <?php
-  require_once('../assets/config.php');
-  require_once('../functions/sendFunction.php');
-  require('../includes/sessionToBeRequired.php');
+require_once('../assets/config.php');
+require_once('../functions/sendFunction.php');
+require('../includes/sessionToBeRequired.php');
 
-  $transfer_id = $_GET['id'];
-  $result = mysqli_query($con,"SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
-  $row = mysqli_fetch_assoc($result);
+$transfer_id = $_GET['id'];
+$result = $conn->prepare("SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
+$result->execute();
+$row = $result->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -43,9 +44,9 @@
       <!-- Main Content -->
       <div id="content">
 
-         <!-- Topbar -->
-         <?php require_once('../includes/topbar.php') ?>
-         <!-- End of Topbar -->
+        <!-- Topbar -->
+        <?php require_once('../includes/topbar.php') ?>
+        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -59,21 +60,21 @@
           <!-- Content Row -->
           <form method="POST" action="" class="form-horizontal">
             <?php editPost(); ?>
-
+            
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Title of Transfer</label>
               <div class="col-sm-10">
-                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row['transfer_title']; ?>" required>
+                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" value="<?php echo $row[0]['transfer_title']; ?>" required>
               </div>
             </div>
-            
+
             <div class="form-group row">
               <label class="control-label col-sm-2" for="document">Document</label>
               <div class="col-sm-10">
-              <?php 
-                   // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>";
-                  ?>
-                  <br>
+                <?php
+                // echo "<img src='../../uploads/".$row['FILE']."' class='img-thumbnail postImg'>";
+                ?>
+                <br>
                 <input type="file" name="file" id="document">
               </div>
             </div>
@@ -82,7 +83,7 @@
               <label class="control-label col-sm-2" for="title">Place you want to go</label>
               <div class="col-sm-10">
                 <small>Please follow this format of district,region eg: ubungo,dar es salaam NOTE:shortform of region or district names is disallowed</small>
-                <input type="text" name="place_to_go" class="form-control" id="title" placeholder="Enter place to go.." value="<?php echo $row['place_to_go']; ?>" required>
+                <input type="text" name="place_to_go" class="form-control" id="title" placeholder="Enter place to go.." value="<?php echo $row[0]['place_to_go']; ?>" required>
               </div>
             </div>
 
