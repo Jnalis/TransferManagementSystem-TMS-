@@ -1,7 +1,6 @@
 zzztupia
 zzcheck.php
 uploads
-home
-pages
-resources/styles/vendor/chart.js
-resources/styles/vendor/fontawesome-free/*
+page
+resources/styles/vendor/charts.js
+resources/styles/vendor/fontawesome/*
