@@ -2,3 +2,6 @@ zzztupia
 zzcheck.php
 pagesclear
 styles/vendor
+uploads
+resources/styles/vendor/chart.js
+resources/styles/vendor/fontawesome-free/*
