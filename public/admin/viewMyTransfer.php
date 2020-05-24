@@ -1,6 +1,7 @@
 <?php
 require_once('../../config/config.php');
 require('../../src/sessionToBeRequired.php');
+require_once('../../src/sendFunction.php');
 
 
 $result = $conn->prepare("SELECT * FROM user_transfers WHERE user_id = $user ORDER BY created_at DESC");
@@ -103,9 +104,7 @@ $count = $result->rowCount(PDO::FETCH_ASSOC);
                     </div>
                     <div class="row dateInfoWorker">
                       <div class="col">
-                        <?php deletePost(); ?>
-                        <a href="viewMyTransfer.php?id=<?php echo $row['transfer_id']; ?>" class="btn btn-danger">Delete</a>
-
+                        <a href="../../src/delete.php?id=<?php echo $row['transfer_id']; ?>" class="btn btn-danger">Delete</a>
 
                         <a href="editMyTransfer.php?id=<?php echo $row['transfer_id']; ?>" class="btn btn-info">Edit</a>
                       </div>

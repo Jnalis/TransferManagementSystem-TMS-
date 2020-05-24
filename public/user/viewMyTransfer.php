@@ -2,11 +2,12 @@
 error_reporting(E_ALL);
 require('../../config/config.php');
 require('../../src/sessionToBeRequired.php');
+require_once('../../src/sendFunction.php');
 
 //Getting the single id of post from post
-$transfer_id = $_GET['id'];
+//$transfer_id = $_GET['id'];
 
-$result = $conn->prepare("SELECT * FROM user_transfers WHERE transfer_id = $transfer_id");
+$result = $conn->prepare("SELECT * FROM user_transfers WHERE user_id = $user");
 $result->execute();
 
 $stmt = $result->fetchAll();
@@ -88,12 +89,8 @@ $stmt = $result->fetchAll();
                     ?>
                     <p class="myPostDetailed">
                       <span class="buttons">
-                        <a href="index.php?id=<?php echo $row['transfer_id']; ?>">
-                          <button class="btn btn-danger">Delete</button>
-                          <?php //deletePost(); 
-                          ?>
-                        </a>
-
+                        <a href="../../src/del.php?id=<?php echo $row['transfer_id']; ?>" class="btn btn-danger">Delete</a>
+                        
                         <a href="editMyTransfer.php?id=<?php echo $row['transfer_id']; ?>">
                           <button class="btn btn-info">Edit</button>
                         </a>

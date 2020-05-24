@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
                         if (!isLoginSessionExpired()) {
                             echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
                         } else {
-                            header("Location:logout.php?session_expired=1");
+                            header("Location:../src/logout.php?session_expired=1");
                         }
                     }
                     if (isset($_GET["session_expired"])) {
@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
                         if (!isLoginSessionExpired()) {
                             echo "<script type='text/javascript'> document.location = 'user/index.php'; </script>";
                         } else {
-                            header("Location:logout.php?session_expired=1");
+                            header("Location:../src/logout.php?session_expired=1");
                         }
                     }
                     if (isset($_GET["session_expired"])) {

@@ -54,52 +54,7 @@ form.user .form-control-user {
   font-weight: 500;
   font-size: 20px;
 }
-/*************************************************
-**************************************************
-***************** popup****************** */
-#popupBoxOnePosition{
-  top: 0;
-  left: 0;
-  position: fixed;
-  width: 100%;
-  height: 120%;
-  background-color: rgba(0,0,0,0.7);
-  display: none;
-}
-.popupBoxWrapper{
-  width: 50%;
-  margin: 50px auto;
-  text-align: left;
 
-}
-.popupBoxContent{
-  background-color: #FFF;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.btn {
-width: 100%;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-@media screen and (max-width: 425px){
-  .popupBoxWrapper{
-    width: 100%;  
-  }
-}
-/* end here */
 
 
 @media screen and (max-width: 425px) {

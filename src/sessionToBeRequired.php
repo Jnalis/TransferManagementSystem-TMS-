@@ -3,7 +3,7 @@ session_start();
 require_once("session.php");
 if (isset($_SESSION['user'])) {
     if (isLoginSessionExpired()) {
-        header("Location:../logout.php?session_expired=1");
+        header("Location:../../src/logout.php?session_expired=1");
     }
 }
 $user = $_SESSION['user'];

@@ -54,12 +54,12 @@ require_once('../../src/sendFunction.php');
 
           <!-- Content Row -->
           <form method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
-            <?php postSend(); ?>
+            <?php postSendWorker(); ?>
 
             <div class="form-group row">
               <label class="control-label col-sm-2" for="title">Title of Transfer</label>
               <div class="col-sm-10">
-                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" required autocomplete="off">
+                <input type="text" name="transfer_title" class="form-control" id="title" placeholder="Enter Title" required>
               </div>
             </div>
 
@@ -74,7 +74,7 @@ require_once('../../src/sendFunction.php');
               <label class="control-label col-sm-2" for="title">Place you want to go</label>
               <div class="col-sm-10">
                 <small>Please follow this format of district,region eg: ubungo,dar es salaam NOTE:shortform of region or district names is disallowed</small>
-                <input type="text" name="place_to_go" class="form-control" id="title" placeholder="Enter place to go.." required autocomplete="off">
+                <input type="text" name="place_to_go" class="form-control" id="title" placeholder="Enter place to go.." required>
               </div>
             </div>
 
