@@ -15,7 +15,7 @@ if ($count == 0) {
     exit("Can't find page");
 }
 if (isset($_POST['password'])) {
-    $pass = $_POST['password'];
+    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $row = $getEmailQuery -> fetch();
     //print_r($row);

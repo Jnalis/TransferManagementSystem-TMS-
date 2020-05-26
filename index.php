@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
-require_once('../config/config.php');
-require_once('../src/login.php');
+require_once('config/config.php');
+require_once('src/login.php');
 
 ?>
 <!DOCTYPE html>
@@ -9,20 +9,19 @@ require_once('../src/login.php');
 
 <head>
 
-  <?php require_once('../resources/metaTags.php') ?>
+  <?php require_once('resources/metaTags.php') ?>
 
   <title>TMS - Login</title>
 
   <!-- Custom fonts for this template-->
-  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="../resources/styles/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="resources/styles/css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- Coustom styles after editing -->
-  <link href="../resources/styles/mystyle.css" rel="stylesheet">
+  <link href="resources/styles/mystyle.css" rel="stylesheet">
 
 </head>
 
@@ -50,7 +49,7 @@ require_once('../src/login.php');
                       <div class="alert alert-danger" role="alert"><?php echo $message; ?></div>
                     <?php } ?>
                     <div class="form-group">
-                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" title="Please enter your Email" aria-describedby="emailHelp" value="<?php if (isset($_COOKIE["email"])){echo $_COOKIE["email"];}?>" placeholder="Enter Email Address..." required>
+                      <input type="email" name="email" class="form-control form-control-user" id="email" title="Please enter your Email" aria-describedby="emailHelp" value="<?php if (isset($_COOKIE["email"])){echo $_COOKIE["email"];}?>" placeholder="Enter Email Address..." required>
                     </div>
 
                     <div class="form-group">
@@ -71,7 +70,7 @@ require_once('../src/login.php');
 
 
                     <div class="text-center">
-                      <a class=" create-account" href="form/register.php">Create an Account!</a>
+                      <a class=" create-account" href="public/form/register.php">Create an Account!</a>
                     </div>
 
                     <div class="text-center">
@@ -91,16 +90,16 @@ require_once('../src/login.php');
 
   </div>
 
-  <?php require_once('../resources/assets/footer.php'); ?>
+  <?php require_once('resources/assets/footer.php'); ?>
     <!-- Bootstrap core JavaScript-->
-    <script src="../resources/styles/vendor/jquery/jquery.min.js"></script>
-  <script src="../resources/styles/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/styles/vendor/jquery/jquery.min.js"></script>
+  <script src="resources/styles/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="../resources/styles/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="resources/styles/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../resources/styles/js/sb-admin-2.min.js"></script>
+  <script src="resources/styles/js/sb-admin-2.min.js"></script>
 
 </body>
 

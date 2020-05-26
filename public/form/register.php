@@ -11,7 +11,7 @@ require_once('../../config/config.php');
   <?php require_once('../../resources/metaTags.php') ?>
   <title>TMS - Register</title>
   <!-- a new cdn bootstrap -->
-  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template-->
@@ -115,7 +115,7 @@ require_once('../../config/config.php');
 
                   <hr>
                   <div class="text-center">
-                    <a class="create-account" href="../index.php">Already have an account? Login!</a>
+                    <a class="create-account" href="../../index.php">Already have an account? Login!</a>
                   </div>
 
 

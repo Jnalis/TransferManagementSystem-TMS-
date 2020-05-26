@@ -29,9 +29,9 @@ if (isset($_POST['login'])) {
 
                     if (isset($_SESSION["user"])) {
                         if (!isLoginSessionExpired()) {
-                            echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
+                            echo "<script type='text/javascript'> document.location = 'public/admin/index.php'; </script>";
                         } else {
-                            header("Location:../src/logout.php?session_expired=1");
+                            header("Location:src/logout.php?session_expired=1");
                         }
                     }
                     if (isset($_GET["session_expired"])) {
@@ -52,9 +52,9 @@ if (isset($_POST['login'])) {
 
                     if (isset($_SESSION["user"])) {
                         if (!isLoginSessionExpired()) {
-                            echo "<script type='text/javascript'> document.location = 'user/index.php'; </script>";
+                            echo "<script type='text/javascript'> document.location = 'public/user/index.php'; </script>";
                         } else {
-                            header("Location:../src/logout.php?session_expired=1");
+                            header("Location:src/logout.php?session_expired=1");
                         }
                     }
                     if (isset($_GET["session_expired"])) {

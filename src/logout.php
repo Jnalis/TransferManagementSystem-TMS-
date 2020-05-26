@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	session_unset($_SESSION['user']);
-	$url = "../public/index.php";
+	$url = "../index.php";
 	if(isset($_GET["session_expired"])) {
 		if (isset($_COOKIE["email"]) AND isset($_COOKIE["password"])){
 			setcookie("email", '', time() - (3600));

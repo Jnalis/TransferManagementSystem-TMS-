@@ -10,15 +10,12 @@
   background-color: #c2c7cf;
   background-image: none;
 }
-.bg-login-image {
-  background: url('../img/default-avatar-png-7.png');
-  background-position: center;
-  background-size: cover;
-}
+
 label {
   font-size: 16px;
   color: black;
 }
+
 .forgot-password {
   font-size: 80%;
   font-weight: 400;
