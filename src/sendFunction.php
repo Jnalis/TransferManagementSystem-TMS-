@@ -49,7 +49,7 @@ function register()
 
       $lastInsertId = $conn->lastInsertId();
       if ($lastInsertId) {
-        header("location:../index.php");
+        header("location:../../index.php");
         exit;
       } else {
         echo "Something went wrong.Please try again";

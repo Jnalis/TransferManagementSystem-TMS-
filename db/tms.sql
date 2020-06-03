@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2020 at 04:52 PM
+-- Generation Time: Jun 02, 2020 at 06:45 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.16
 
@@ -67,13 +67,17 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`user_id`, `firstname`, `middlename`, `surname`, `gender`, `yob`, `email`, `phone`, `workPlace`, `role`, `password`) VALUES
-(20, 'Juve', 'Juve', 'Juve', 'Male', 1996, 'jnalisjmson6@gmail.com', '0757334887', 'Ubungo,dar es salaam', 'Head of institution', '$2y$10$1xNi9wOedmDCL8GNRRNFMer3d9PfrOE/wnyv4OVGjUXk0wls8/j4i'),
+(20, 'Juve', 'Juve', 'Juve', 'Male', 1996, 'jnalisjmson6@gmail.com', '0757334887', 'Ubungo,dar es salaam', 'Head of institution', '$2y$10$SVRJ2QqS4aLFyIyb0exqiuqEHh0KZYbqEQo5Ki8nWAE7nmOgkSaqy'),
 (21, 'Admin', 'Admin', 'Admin', 'Female', 1997, 'swaijuvenalis@gmail.com', '0623512407', 'Rombo,kilimanjaro', 'Head of institution', '$2y$10$2D.pLzyKB87rGbB1.PjO1eWzlaWH43nJTJ70oSE84LlQoXqTQsOBe'),
 (22, 'Erick', 'Erick', 'Erick', 'Male', 1996, 'erickkatikiro@gmail.com', '0757334887', 'Temeke,dar es salaam', 'Head of institution', '$2y$10$hnAshv4qno.dvQv2ZsNJp.Wo4MKU61S.r6N3oujfcWiG.BEusyEcm'),
 (23, 'Teacher', 'Teacher', 'Teacher', 'Male', 1987, 'teacher@gmail.com', '0123456789', 'Ilala,dar es salaam', 'workers', '$2y$10$4uSFU23/nmASGy3djkzPEur4a5jlEQN9GBPc5yxxO7ANPC3vH6aF.'),
 (26, 'T', 'T', 'T', 'Female', 1987, 't@gmail.com', '1234567899', 'Moshi,kilimanjaro', 'workers', '$2y$10$26yPnDTdsEV.e5VFUbgKdO1C1jPWbjKBjPgATyEwhEwHKCtPF5u3q'),
 (27, 'Teach', 'Teach', 'Teach', 'Female', 1962, 'teach@gmail.com', '1236547895', 'Himo,kilimanjaro', 'workers', '$2y$10$Pri7xKzD4LIWgNBNdZF3Aer1UaOqoXJffPxZuaYYGDkCKOPy0Rty2'),
-(28, 'X', 'X', 'X', 'Female', 1962, 'x@gmail.com', '3454657656', 'Mbagala,dar es salaam', 'workers', '$2y$10$ySSkxhEpq7mm.umFlsQuI.VdT9SLu8L6uXf7dJVgQ9Vpt6HYLpb6G');
+(28, 'X', 'X', 'X', 'Female', 1962, 'x@gmail.com', '3454657656', 'Mbagala,dar es salaam', 'workers', '$2y$10$ySSkxhEpq7mm.umFlsQuI.VdT9SLu8L6uXf7dJVgQ9Vpt6HYLpb6G'),
+(29, 'Rety', 'Rety', 'Rety', 'Female', 1996, 'erick@gmail.com', '0757334887', 'Rombo,kilimanjaro', 'workers', '$2y$10$9UxQSvc/OWjlZENQrxsbXu8xyHsjez9VCaB6fG9BV/ZA6ijbTrQbe'),
+(30, 'Y', 'Y', 'Y', 'Male', 1996, 'y@gmail.com', '0757334887', 'Rombo,kilimanjaro', 'workers', '$2y$10$shCeBttjP/sSYYGaDSGQg.zHrs4sFmIsB8nkLMnXHQBJCR3dzKy/G'),
+(31, 'Yy', 'Yy', 'Yy', 'Male', 1996, 'yy@gmail.com', '0987654321', 'Temeke,dar es salaam', 'workers', '$2y$10$83PUgfJeX7I1t3ANbY1iKO5cGtVGb0tc3RZj1AZcHkfmlUM/yEB..'),
+(32, 'Yyy', 'Yyy', 'Yyy', 'Male', 1996, 'yyy@gmail.com', '0987654321', 'Temeke,dar es salaam', 'workers', '$2y$10$i0uhVvVWFnONtYit6bEZFuUCxaP5YiHLzqGFhIh7tzu65E3oxjcZ.');
 
 -- --------------------------------------------------------
 
@@ -97,7 +101,8 @@ CREATE TABLE `user_transfers` (
 
 INSERT INTO `user_transfers` (`transfer_id`, `user_id`, `transfer_title`, `file`, `place_to_go`, `viewed`, `created_at`) VALUES
 (52, 26, 'Kuhamia kwako by w', 'Lecture 45eca7f2a864e51.64250200.pdf', 'Ubungo,dar es salaam', 'NO', '2020-05-24 14:05:30'),
-(60, 20, 'Rtryukj', 'html5_tutorial5eca84c9d0bf70.61368256.pdf', 'Ilala,dar es salaam', 'NO', '2020-05-24 14:29:29');
+(60, 20, 'Rtryukj', 'html5_tutorial5eca84c9d0bf70.61368256.pdf', 'Ilala,dar es salaam', 'NO', '2020-05-24 14:29:29'),
+(61, 26, 'Rsger', '157279277479405ecbf7f5f34998.68910828.pdf', 'Ilala,dar es salaam', 'NO', '2020-05-25 16:53:09');
 
 --
 -- Indexes for dumped tables
@@ -131,19 +136,19 @@ ALTER TABLE `user_transfers`
 -- AUTO_INCREMENT for table `reset_password`
 --
 ALTER TABLE `reset_password`
-  MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `user_transfers`
 --
 ALTER TABLE `user_transfers`
-  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- Constraints for dumped tables
