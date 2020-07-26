@@ -60,7 +60,7 @@ require_once('src/login.php');
                     <div class="form-group">
                       <div class="custom-control custom-switch small">
                         <input type="checkbox" name="remember_me" class="custom-control-input" id="customCheck" <?php if(isset($_COOKIE['email'])){echo 'checked';}?>>
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                        <label class="custom-control-label" for="customCheck">RememberMe</label>
                       </div>
                     </div>
 
